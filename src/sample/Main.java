@@ -1,18 +1,16 @@
 package sample;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
+import javafx.application.*;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.stage.*;
 import java.awt.*;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         primaryStage.setTitle("Color Switch");
         Button newG = new Button();
         Button loadG = new Button();
