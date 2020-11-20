@@ -1,20 +1,34 @@
 package sample;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.transform.Rotate;
+import javafx.stage.Stage;
 
 public class MainPageController {
+
+    // For Exit Button
+    @FXML private Button ExitB;
+    @FXML
+    public void closeButtonAction(ActionEvent a) {
+        Stage s=(Stage)ExitB.getScene().getWindow();
+        s.close();
+    }
+
+    // For Rotating Groups
     @FXML private Group D1;
     @FXML private Group D2;
     @FXML private Group D3;
     @FXML private Group O1;
     @FXML private Group O2;
-
     AnimationTimer t = new Timer();
     public MainPageController(){
         t.start();
     }
+
     private class Timer extends AnimationTimer{
         @Override
         public void handle(long time){
