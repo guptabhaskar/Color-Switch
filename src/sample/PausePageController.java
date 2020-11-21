@@ -3,13 +3,18 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
-public class PauseGameController {
+import java.io.IOException;
+
+public class PausePageController {
 
     // For Save Button
     public void saveButtonAction(ActionEvent actionEvent) {
@@ -31,8 +36,11 @@ public class PauseGameController {
     }
 
     // For Home Button
-    public void homeButtonAction(MouseEvent mouseEvent) {
-        System.out.println("Home");
+    @FXML private Button HomeB;
+    public void homeButtonAction(MouseEvent mouseEvent) throws Exception {
+        Stage s=(Stage)HomeB.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        s.setScene(new Scene(root, 450, 700));
     }
 
     // For Rotating Resume Button
@@ -40,7 +48,7 @@ public class PauseGameController {
     @FXML private Group D2;
     @FXML private Group D3;
     AnimationTimer t = new Timer();
-    public PauseGameController(){
+    public PausePageController(){
         t.start();
     }
     private class Timer extends AnimationTimer{
