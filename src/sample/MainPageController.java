@@ -4,10 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 public class MainPageController {
+
+    // Constructor
+    public MainPageController(){
+        RotateT.start();
+        BallT.start();
+    }
 
     // For Exit Button
     @FXML private Button ExitB;
@@ -23,11 +30,7 @@ public class MainPageController {
     @FXML private Group D3;
     @FXML private Group O1;
     @FXML private Group O2;
-    AnimationTimer t = new Timer();
-    public MainPageController(){
-        t.start();
-    }
-
+    AnimationTimer RotateT = new Timer();
     private class Timer extends AnimationTimer{
         @Override
         public void handle(long time){
@@ -58,4 +61,19 @@ public class MainPageController {
             D3.getTransforms().add(RD3);
         }
     }
+
+    // For Bouncing Design Ball
+    @FXML private Circle BounceBall;
+    AnimationTimer BallT = new BounceTimer();
+    private class BounceTimer extends AnimationTimer{
+        private double dy = 1.5;
+        @Override
+        public void handle(long time){
+            BounceBall.setLayoutY(BounceBall.getLayoutY() + dy);
+            if((BounceBall.getLayoutY() >= (490 - BounceBall.getRadius())) || (BounceBall.getLayoutY() <= (410 + BounceBall.getRadius()))){
+                dy = -dy;
+            }
+        }
+    }
+
 }
