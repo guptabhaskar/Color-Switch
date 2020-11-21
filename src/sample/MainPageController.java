@@ -2,24 +2,45 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class MainPageController {
-
     // Constructor
     public MainPageController(){
         RotateT.start();
         BallT.start();
     }
 
+    // For Play Now! Button
+    @FXML private Button PlayB;
+    public void startNewGameAction(ActionEvent a) throws IOException {
+        Stage s=(Stage)PlayB.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
+        s.setScene(new Scene(root, 450, 700));
+        s.show();
+    }
+
+    // For Saved Game Button
+    @FXML private Button SaveB;
+    public void ShowSavedGameAction(ActionEvent a) throws IOException {
+        System.out.println("Show Saved Games");
+        Stage s=(Stage)SaveB.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("LoadGamePage.fxml"));
+        s.setScene(new Scene(root, 450, 700));
+        s.show();
+    }
+
     // For Exit Button
     @FXML private Button ExitB;
-    @FXML
-    public void closeButtonAction(ActionEvent a) {
+    public void ExitGameAction(ActionEvent a) {
         Stage s=(Stage)ExitB.getScene().getWindow();
         s.close();
     }
@@ -75,5 +96,4 @@ public class MainPageController {
             }
         }
     }
-
 }

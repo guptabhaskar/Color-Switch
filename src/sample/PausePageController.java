@@ -12,25 +12,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class PausePageController {
 
     // For Save Button
-    public void saveButtonAction(ActionEvent actionEvent) {
+    @FXML private Button SaveB;
+    public void saveButtonAction(ActionEvent actionEvent) throws Exception {
         System.out.println("Save");
+        Stage s=(Stage)HomeB.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+        s.setScene(new Scene(root, 450, 700));
     }
 
     // For Exit Button
-    @FXML
-    private Button ExitB;
-    @FXML
+    @FXML private Button ExitB;
     public void closeButtonAction(ActionEvent actionEvent) {
         Stage s=(Stage)ExitB.getScene().getWindow();
         s.close();
     }
 
     // For Resume Button
+    @FXML private Button ResumeB;
     public void resumeButtonAction(MouseEvent mouseEvent) {
         System.out.println("Resume");
     }
