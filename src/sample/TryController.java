@@ -13,6 +13,7 @@ public class TryController {
 
     // For Rotating Groups
     @FXML private Group Triangle1;
+    @FXML private Group Rectangle1;
     AnimationTimer RotateT = new Timer();
     private class Timer extends AnimationTimer{
         @Override
@@ -22,6 +23,11 @@ public class TryController {
             RTriangle1.setPivotX(0);
             RTriangle1.setPivotY(0);
             Triangle1.getTransforms().add(RTriangle1);
+            Rotate RRectangle1 = new Rotate();
+            RRectangle1.setAngle(1);
+            RRectangle1.setPivotX(0);
+            RRectangle1.setPivotY(0);
+            Rectangle1.getTransforms().add(RRectangle1);
         }
     }
 
