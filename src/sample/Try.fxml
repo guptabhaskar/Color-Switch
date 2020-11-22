@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="550.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TryController">
+   <children>
+      <Group fx:id="Triangle1" layoutX="167.0" layoutY="137.0">
+         <children>
+            <Line endX="100.0" layoutX="10.0" layoutY="80.0" startX="-100.0" stroke="#fae100" strokeLineCap="ROUND" strokeWidth="15.0" />
+            <Line endX="100.0" layoutX="-42.0" layoutY="-1.0" rotate="120.0" startX="-100.0" startY="-5.098855018615723" stroke="#32dbf0" strokeLineCap="ROUND" strokeWidth="15.0" />
+            <Line endX="100.0" layoutX="65.0" layoutY="-3.0" rotate="-120.0" startX="-100.0" stroke="#ff0181" strokeLineCap="ROUND" strokeWidth="15.0" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
