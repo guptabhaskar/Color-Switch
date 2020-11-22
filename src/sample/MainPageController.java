@@ -62,7 +62,7 @@ public class MainPageController {
         // Show Saved Games
         System.out.println("Show Saved Games");
         Stage s=(Stage)SaveB.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ScorePage.fxml"));
         s.setScene(new Scene(root, 450, 700));
         s.show();
     }
