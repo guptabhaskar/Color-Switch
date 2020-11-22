@@ -9,39 +9,67 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class PausePageController {
 
+    // Hover Effect for Buttons
+    public void mouseEnterSave(MouseEvent m) {
+        SaveB.setScaleX(1.1);
+        SaveB.setScaleY(1.1);
+    }
+    public void mouseExitSave(MouseEvent m) {
+        SaveB.setScaleX(1);
+        SaveB.setScaleY(1);
+    }
+    public void mouseEnterExit(MouseEvent m) {
+        ExitB.setScaleX(1.1);
+        ExitB.setScaleY(1.1);
+    }
+    public void mouseExitExit(MouseEvent m) {
+        ExitB.setScaleX(1);
+        ExitB.setScaleY(1);
+    }
+
     // For Save Button
     @FXML private Button SaveB;
-    public void saveButtonAction(ActionEvent actionEvent) throws Exception {
-        System.out.println("Save");
+    public void saveButtonAction(ActionEvent a) throws IOException {
+        // Save Game and Go to Main Page
         Stage s=(Stage)HomeB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         s.setScene(new Scene(root, 450, 700));
+        s.show();
     }
 
     // For Exit Button
     @FXML private Button ExitB;
-    public void closeButtonAction(ActionEvent actionEvent) {
+    public void closeButtonAction(ActionEvent a) {
+        // Done IG
         Stage s=(Stage)ExitB.getScene().getWindow();
         s.close();
     }
 
     // For Resume Button
-    @FXML private Button ResumeB;
-    public void resumeButtonAction(MouseEvent mouseEvent) {
-        System.out.println("Resume");
+    @FXML private SVGPath ResumeB;
+    public void resumeButtonAction(MouseEvent m) throws IOException {
+        // Resume Game Code Here
+        Stage s=(Stage)ResumeB.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
+        s.setScene(new Scene(root, 450, 700));
+        s.show();
     }
 
     // For Home Button
     @FXML private Button HomeB;
-    public void homeButtonAction(MouseEvent mouseEvent) throws Exception {
+    public void homeButtonAction(MouseEvent m) throws IOException {
+        // Done IG
         Stage s=(Stage)HomeB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         s.setScene(new Scene(root, 450, 700));
+        s.show();
     }
 
     // For Rotating Resume Button

@@ -20,17 +20,17 @@
             <Font name="Ayuthaya" size="48.0" />
          </font>
       </Label>
-      <Button fx:id="PlayB" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#startNewGameAction" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #1C69CF;" text="PLAY NOW!" textFill="WHITE">
+      <Button fx:id="PlayB" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#startNewGameAction" onMouseEntered="#mouseEnterPlay" onMouseExited="#mouseExitPlay" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #1C69CF;" text="PLAY NOW!" textFill="WHITE">
          <font>
             <Font name="Ayuthaya" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="SaveB" layoutX="250.0" layoutY="425.0" mnemonicParsing="false" onAction="#ShowSavedGameAction" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #6E0F1F;" text="SAVED GAME" textFill="WHITE">
+      <Button fx:id="SaveB" layoutX="250.0" layoutY="425.0" mnemonicParsing="false" onAction="#ShowSavedGameAction" onMouseEntered="#mouseEnterSave" onMouseExited="#mouseExitSave" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #6E0F1F;" text="SAVED GAME" textFill="WHITE">
          <font>
             <Font name="Ayuthaya" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="ExitB" layoutX="250.0" layoutY="500.0" mnemonicParsing="false" onAction="#ExitGameAction" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #000000;" text="EXIT" textFill="WHITE">
+      <Button fx:id="ExitB" layoutX="250.0" layoutY="500.0" mnemonicParsing="false" onAction="#ExitGameAction" onMouseEntered="#mouseEnterExit" onMouseExited="#mouseExitExit" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #000000;" text="EXIT" textFill="WHITE">
          <font>
             <Font name="Ayuthaya" size="24.0" />
          </font>

@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
@@ -22,16 +23,43 @@ public class MainPageController {
     // For Play Now! Button
     @FXML private Button PlayB;
     public void startNewGameAction(ActionEvent a) throws IOException {
+        // Start New Game
         Stage s=(Stage)PlayB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
         s.setScene(new Scene(root, 450, 700));
         s.show();
     }
 
+    // Hover Effect for Buttons
+    public void mouseEnterPlay(MouseEvent m) {
+        PlayB.setScaleX(1.1);
+        PlayB.setScaleY(1.1);
+    }
+    public void mouseExitPlay(MouseEvent m) {
+        PlayB.setScaleX(1);
+        PlayB.setScaleY(1);
+    }
+    public void mouseEnterSave(MouseEvent m) {
+        SaveB.setScaleX(1.1);
+        SaveB.setScaleY(1.1);
+    }
+    public void mouseExitSave(MouseEvent m) {
+        SaveB.setScaleX(1);
+        SaveB.setScaleY(1);
+    }
+    public void mouseEnterExit(MouseEvent m) {
+        ExitB.setScaleX(1.1);
+        ExitB.setScaleY(1.1);
+    }
+    public void mouseExitExit(MouseEvent m) {
+        ExitB.setScaleX(1);
+        ExitB.setScaleY(1);
+    }
+
     // For Saved Game Button
     @FXML private Button SaveB;
     public void ShowSavedGameAction(ActionEvent a) throws IOException {
-        System.out.println("Show Saved Games");
+        // Show Saved Games
         Stage s=(Stage)SaveB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("LoadGamePage.fxml"));
         s.setScene(new Scene(root, 450, 700));
@@ -41,6 +69,7 @@ public class MainPageController {
     // For Exit Button
     @FXML private Button ExitB;
     public void ExitGameAction(ActionEvent a) {
+        // Done IG
         Stage s=(Stage)ExitB.getScene().getWindow();
         s.close();
     }
