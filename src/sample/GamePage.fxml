@@ -26,6 +26,24 @@
             <Font name="Ayuthaya" size="48.0" />
          </font>
       </Label>
+      <Group fx:id="O11" layoutX="367.0" layoutY="198.0" scaleX="-0.5" scaleY="0.5">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="O1" layoutX="267.0" layoutY="198.0" scaleX="0.5" scaleY="0.5">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
       <Group fx:id="D2" layoutX="100.0" layoutY="200.0" scaleX="0.8" scaleY="0.8">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
