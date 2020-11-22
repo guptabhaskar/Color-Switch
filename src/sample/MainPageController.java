@@ -60,8 +60,9 @@ public class MainPageController {
     @FXML private Button SaveB;
     public void ShowSavedGameAction(ActionEvent a) throws IOException {
         // Show Saved Games
+        System.out.println("Show Saved Games");
         Stage s=(Stage)SaveB.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("LoadGamePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
         s.setScene(new Scene(root, 450, 700));
         s.show();
     }
