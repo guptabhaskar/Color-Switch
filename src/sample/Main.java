@@ -14,7 +14,7 @@ public class Main extends Application {
 //        Parent root = FXMLLoader.load(getClass().getResource("PausePage.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("ScorePage.fxml"));
         primaryStage.setTitle("Color Switch");
-        primaryStage.setScene(new Scene(root, 550, 700));
+        primaryStage.setScene(new Scene(root, 450, 700));
         primaryStage.show();
     }
 
