@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
@@ -73,10 +74,9 @@ public class GamePageController {
             } else if(Star1.getScaleX()<=2.0) {
                 diff *= -1;
             }
+            gravity();
         }
     }
-
-
 
     // For Pause Button
     @FXML private Button PauseB;
@@ -86,7 +86,19 @@ public class GamePageController {
         s.setScene(new Scene(root, 450, 700));
         s.show();
     }
-
+    private double differ=0.01;
+    private double consta=1;
+    private boolean f=true;
+    @FXML private Circle MainBall;
+    public void gravity(){
+        if(!f) {
+            MainBall.setTranslateY(MainBall.getTranslateY() + consta);
+            consta += differ;
+        }
+    }
     public void BallJumpClickAction(MouseEvent m) {
+        f=false;
+        consta=1;
+        MainBall.setTranslateY(MainBall.getTranslateY()-40);
     }
 }
