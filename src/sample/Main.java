@@ -10,9 +10,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 //        Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("PausePage.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("ScorePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ScorePage.fxml"));
         primaryStage.setTitle("Color Switch");
         primaryStage.setScene(new Scene(root, 450, 700));
         primaryStage.show();
