@@ -74,7 +74,7 @@ public class GamePageController implements Initializable {
 //            chooseOne.add(new Concentric());
 //            chooseOne.add(new Eight());
 //            chooseOne.add(new Plus());
-            System.out.println(MainBall.C.getTranslateY());
+//            System.out.println(MainBall.C.getTranslateY());
             if(MainBall.C.getTranslateY()<-300){
                 for(Obstacle o: onScreen){
                     if(o instanceof Triangle){
