@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +15,15 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GamePageController {
     // Constructor
+    TranslateTransition tr=new TranslateTransition();
     @FXML private Circle MainBall;
     public GamePageController(){
         RotateTi.start();
@@ -38,6 +42,7 @@ public class GamePageController {
     boolean BallColor=false; // To check if ball has random color or not in start
     private double diff=0.01;
     AnimationTimer RotateTi = new Timer();
+    private boolean clicked=false;
     private class Timer extends AnimationTimer{
         @Override
         public void handle(long time){
@@ -79,6 +84,7 @@ public class GamePageController {
             } else if(Star1.getScaleX()<=2.0) {
                 diff *= -1;
             }
+
             gravity();
 
             // Give Random Color to Ball;
@@ -105,18 +111,38 @@ public class GamePageController {
         s.setScene(new Scene(root, 450, 700));
         s.show();
     }
+
     private double differ=0.01;
     private double consta=1;
     private boolean f=true;
+
     public void gravity(){
         if(!f) {
+
             MainBall.setTranslateY(MainBall.getTranslateY() + consta);
             consta += differ;
+//            tr.setDuration(Duration.INDEFINITE);
+//            tr.setToY(MainBall.getTranslateY() + 10);
+//            tr.setNode(MainBall);
+//            tr.play();
+
         }
+//        else if(f){
+//            MainBall.setTranslateY(MainBall.getTranslateY() - consta);
+//            consta += differ;
+//        }
     }
     public void BallJumpClickAction(MouseEvent m) {
-        f=false;
         consta=1;
-        MainBall.setTranslateY(MainBall.getTranslateY()-40);
+        f=false;
+
+//        TranslateTransition tr=new TranslateTransition();
+        tr.setDuration(Duration.millis(150));
+        tr.setToY(MainBall.getTranslateY() - 50);
+        tr.setNode(MainBall);
+//        tr.setOnFinished(e->gravity());
+        tr.play();
+
+
     }
 }
