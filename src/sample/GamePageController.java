@@ -68,6 +68,7 @@ public class GamePageController implements Initializable {
         @Override
         public void handle(long time){
             gravity();
+
 //            ArrayList<Obstacle> chooseOne = new ArrayList<>();
 //            chooseOne.add(new Rectangle());
 //            chooseOne.add(new Triangle());
