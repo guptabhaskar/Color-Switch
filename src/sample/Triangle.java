@@ -7,12 +7,17 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class ColorSwitcher extends Effects {
+public class Triangle extends Obstacle {
     Group G;
-    public ColorSwitcher() throws IOException {
-        AnchorPane Obstacles = FXMLLoader.load(getClass().getResource("Try.fxml"));
+    public Triangle(){
+        AnchorPane Obstacles = null;
+        try {
+            Obstacles = FXMLLoader.load(getClass().getResource("Try.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for(Node node:Obstacles.getChildren()) {
-            if(node.getId().equals("ColorSwitcher")) {
+            if(node.getId().equals("Triangle")) {
                 G=(Group) node;
                 break;
             }

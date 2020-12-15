@@ -2,23 +2,87 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.SVGPath?>
 
-<AnchorPane prefHeight="700.0" prefWidth="550.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TryController">
+<AnchorPane prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TryController">
    <children>
-      <Group fx:id="Triangle1" layoutX="167.0" layoutY="137.0">
+      <Group fx:id="Triangle" layoutX="224.0" layoutY="137.0">
          <children>
             <Line endX="100.0" layoutX="10.0" layoutY="80.0" startX="-100.0" stroke="#fae100" strokeLineCap="ROUND" strokeWidth="15.0" />
             <Line endX="100.0" layoutX="-42.0" layoutY="-1.0" rotate="120.0" startX="-100.0" startY="-5.098855018615723" stroke="#32dbf0" strokeLineCap="ROUND" strokeWidth="15.0" />
             <Line endX="100.0" layoutX="65.0" layoutY="-3.0" rotate="-120.0" startX="-100.0" stroke="#ff0181" strokeLineCap="ROUND" strokeWidth="15.0" />
          </children>
       </Group>
-      <Group fx:id="Rectangle1" layoutX="275.0" layoutY="511.0">
+      <Group fx:id="Rectangle" layoutX="232.0" layoutY="499.0">
          <children>
             <Line endX="100.0" layoutX="-99.0" rotate="90.0" startX="-100.0" stroke="#900dff" strokeLineCap="ROUND" strokeWidth="15.0" />
             <Line endX="100.0" layoutX="102.0" rotate="90.0" startX="-100.0" stroke="#32dbf0" strokeLineCap="ROUND" strokeWidth="15.0" />
             <Line endX="100.0" layoutX="1.0" layoutY="-100.0" startX="-100.0" stroke="#ff0181" strokeLineCap="ROUND" strokeWidth="15.0" />
             <Line endX="100.0" layoutX="1.0" layoutY="101.0" startX="-100.0" stroke="#fae100" strokeLineCap="ROUND" strokeWidth="15.0" />
+         </children>
+      </Group>
+      <Group fx:id="Eight1" layoutX="309.0" layoutY="150.0" scaleX="0.75" scaleY="0.75">
+         <children>
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="Eight2" layoutX="160.0" layoutY="150.0" scaleX="0.75" scaleY="0.75">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="Concentric1" layoutX="234.0" layoutY="325.0" rotate="135.0" scaleX="0.8" scaleY="0.8">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="Concentric2" layoutX="234.0" layoutY="325.0" rotate="-45.0" scaleX="-0.65" scaleY="-0.65">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="Plus1" layoutX="90.0" layoutY="500.0">
+         <children>
+            <Line endX="100.0" fill="BLACK" rotate="270.0" startX="23.5" stroke="#900dff" strokeLineCap="ROUND" strokeWidth="6.0" translateY="-41.0" />
+            <Line endX="100.0" fill="BLACK" startX="23.5" stroke="#fae100" strokeLineCap="ROUND" strokeWidth="6.0" translateX="-41.0" />
+            <Line endX="100.0" fill="BLACK" rotate="90.0" startX="23.5" stroke="#ff0181" strokeLineCap="ROUND" strokeWidth="6.0" translateY="41.0" />
+            <Line endX="100.0" fill="BLACK" startX="23.5" stroke="#32dbf0" strokeLineCap="ROUND" strokeWidth="6.0" translateX="41.0" />
+         </children>
+      </Group>
+      <SVGPath fx:id="Star" content="M17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723zM17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723zM17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723zM17.684,7.925l-5.131-0.67L10.329,2.57c-0.131-0.275-0.527-0.275-0.658,0L7.447,7.255l-5.131,0.67C2.014,7.964,1.892,8.333,2.113,8.54l3.76,3.568L4.924,17.21c-0.056,0.297,0.261,0.525,0.533,0.379L10,15.109l4.543,2.479c0.273,0.153,0.587-0.089,0.533-0.379l-0.949-5.103l3.76-3.568C18.108,8.333,17.986,7.964,17.684,7.925 M13.481,11.723c-0.089,0.083-0.129,0.205-0.105,0.324l0.848,4.547l-4.047-2.208c-0.055-0.03-0.116-0.045-0.176-0.045s-0.122,0.015-0.176,0.045l-4.047,2.208l0.847-4.547c0.023-0.119-0.016-0.241-0.105-0.324L3.162,8.54L7.74,7.941c0.124-0.016,0.229-0.093,0.282-0.203L10,3.568l1.978,4.17c0.053,0.11,0.158,0.187,0.282,0.203l4.578,0.598L13.481,11.723z" fill="#fcfcfc" layoutX="225.0" layoutY="315.0" scaleX="2.0" scaleY="2.0" />
+      <Group fx:id="Plus2" layoutX="255.0" layoutY="500.0">
+         <children>
+            <Line endX="100.0" fill="BLACK" rotate="270.0" startX="23.5" stroke="#ff0181" strokeLineCap="ROUND" strokeWidth="6.0" translateY="-41.0" />
+            <Line endX="100.0" fill="BLACK" startX="23.5" stroke="#32dbf0" strokeLineCap="ROUND" strokeWidth="6.0" translateX="-41.0" />
+            <Line endX="100.0" fill="BLACK" rotate="90.0" startX="23.5" stroke="#900dff" strokeLineCap="ROUND" strokeWidth="6.0" translateY="41.0" />
+            <Line endX="100.0" fill="BLACK" startX="23.5" stroke="#fae100" strokeLineCap="ROUND" strokeWidth="6.0" translateX="41.0" />
+         </children>
+      </Group>
+      <Group fx:id="ColorSwitcher" layoutX="235.0" layoutY="225.0" scaleX="0.15" scaleY="0.15">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
          </children>
       </Group>
    </children>

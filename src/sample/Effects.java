@@ -1,4 +1,4 @@
 package sample;
 
-public class Effects {
+public abstract class Effects {
 }
