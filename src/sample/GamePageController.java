@@ -9,14 +9,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class GamePageController {
     // Constructor
+    @FXML private Circle MainBall;
     public GamePageController(){
         RotateTi.start();
 //        RotateT.start();
@@ -31,6 +35,7 @@ public class GamePageController {
     @FXML private Group Plus1;
     @FXML private Group Plus2;
     @FXML private SVGPath Star1;
+    boolean BallColor=false; // To check if ball has random color or not in start
     private double diff=0.01;
     AnimationTimer RotateTi = new Timer();
     private class Timer extends AnimationTimer{
@@ -75,6 +80,20 @@ public class GamePageController {
                 diff *= -1;
             }
             gravity();
+
+            // Give Random Color to Ball;
+            if(!BallColor){
+                BallColor=true;
+                ArrayList<String> allcolors=new ArrayList<>();
+                allcolors.add("#FAE100");
+                allcolors.add("#900DFF");
+                allcolors.add("#FF0181");
+                allcolors.add("#32DBF0");
+                Random rand = new Random();
+                int c = rand.nextInt(4);
+                System.out.println(c);
+                MainBall.setFill(Paint.valueOf(allcolors.get(c)));
+            }
         }
     }
 
@@ -89,7 +108,6 @@ public class GamePageController {
     private double differ=0.01;
     private double consta=1;
     private boolean f=true;
-    @FXML private Circle MainBall;
     public void gravity(){
         if(!f) {
             MainBall.setTranslateY(MainBall.getTranslateY() + consta);
