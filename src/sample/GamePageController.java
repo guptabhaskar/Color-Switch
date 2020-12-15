@@ -12,12 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
