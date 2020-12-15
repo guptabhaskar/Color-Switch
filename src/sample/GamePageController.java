@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class GamePageController implements Initializable {
     boolean BallColor=false; // To check if ball has random color or not in start
     AnimationTimer AnimationTi = new Timer();
     ArrayList<Obstacle> onScreen = new ArrayList<>();
+    Circle faltu=new Circle();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
