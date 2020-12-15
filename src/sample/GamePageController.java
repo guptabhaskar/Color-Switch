@@ -33,10 +33,10 @@ public class GamePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         RotateTi.start();
-        Triangle CS= new Triangle();
-        CS.G.setLayoutY(600);
-        GameScreen.getChildren().addAll(CS.G);
-
+        Concentric CS = new Concentric();
+        CS.G1.setLayoutY(400);
+        CS.G2.setLayoutY(400);
+        GameScreen.getChildren().addAll(CS.G1,CS.G2);
     }
 
     private class Timer extends AnimationTimer{
@@ -73,13 +73,11 @@ public class GamePageController implements Initializable {
     TranslateTransition tr=new TranslateTransition();
     public void gravity(){
         if(!f) {
-
             MainBall.setTranslateY(MainBall.getTranslateY() + consta);
             consta += differ;
-
         }
-
     }
+
     public void BallJumpClickAction(MouseEvent m) {
         consta=1;
         f=false;

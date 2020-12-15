@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 
 public class Rectangle extends Obstacle{
