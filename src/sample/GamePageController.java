@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -67,16 +70,22 @@ public class GamePageController implements Initializable {
     private double differ=0.01;
     private double consta=1;
     private boolean f=true;
+    TranslateTransition tr=new TranslateTransition();
     public void gravity(){
         if(!f) {
+
             MainBall.setTranslateY(MainBall.getTranslateY() + consta);
             consta += differ;
-        }
-    }
 
+        }
+
+    }
     public void BallJumpClickAction(MouseEvent m) {
-        f=false;
         consta=1;
-        MainBall.setTranslateY(MainBall.getTranslateY()-40);
+        f=false;
+        tr.setDuration(Duration.millis(300));
+        tr.setToY(MainBall.getTranslateY() - 50);
+        tr.setNode(MainBall);
+        tr.play();
     }
 }
