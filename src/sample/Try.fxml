@@ -85,5 +85,6 @@
             <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
          </children>
       </Group>
+      <Circle fx:id="MainBall" fill="#fae100" layoutX="245.0" layoutY="627.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>
