@@ -81,7 +81,7 @@
             <Circle fill="#272727" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Circle fx:id="BounceBall" fill="WHITE" layoutX="138.0" layoutY="450.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="BounceBall" fill="WHITE" layoutX="138.0" layoutY="450.0" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="2.0" />
       <Line fx:id="L1" endX="48.75" layoutX="56.25" layoutY="587.0" startX="-56.25" stroke="#fae100" strokeWidth="10.0" />
       <Line fx:id="L4" endX="16.0" layoutX="433.0" layoutY="587.0" startX="-91.0" stroke="#ff0181" strokeWidth="10.0" />
       <Line fx:id="L2" endX="47.0" layoutX="176.0" layoutY="587.0" startX="-66.0" stroke="#900dff" strokeWidth="10.0" />
