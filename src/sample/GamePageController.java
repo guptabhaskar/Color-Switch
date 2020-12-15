@@ -25,13 +25,20 @@ public class GamePageController implements Initializable {
     @FXML private AnchorPane GameScreen;
 
     boolean BallColor=false; // To check if ball has random color or not in start
-    private double diff=0.01;
     AnimationTimer AnimationTi = new Timer();
     ArrayList<Obstacle> onScreen = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        GameScreen.getChildren().addAll(MainBall.C);
+        MainBall.C.setLayoutY(650);
+        GameScreen.getChildren().add(MainBall.C);
+        addRandomObstacle(300);
+        addRandomObstacle(-50);
+        addRandomObstacle(-400);
+        AnimationTi.start();
+    }
+
+    private void addRandomObstacle(double y){
         ArrayList<Obstacle> chooseOne = new ArrayList<>();
         chooseOne.add(new Rectangle());
         chooseOne.add(new Triangle());
@@ -42,76 +49,103 @@ public class GamePageController implements Initializable {
         int c = r.nextInt(5);
         Obstacle o = chooseOne.get(c);
         if(o instanceof Triangle){
-            ((Triangle) o).G.setLayoutY(350);
+            ((Triangle) o).G.setLayoutY(y);
             GameScreen.getChildren().addAll(((Triangle) o).G);
         } else if(o instanceof Rectangle){
-            ((Rectangle) o).G.setLayoutY(350);
+            ((Rectangle) o).G.setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).G);
         } else if(o instanceof Eight){
-            ((Eight) o).G1.setLayoutY(350);
-            ((Eight) o).G2.setLayoutY(350);
+            ((Eight) o).G1.setLayoutY(y);
+            ((Eight) o).G2.setLayoutY(y);
             GameScreen.getChildren().addAll(((Eight) o).G1, ((Eight) o).G2);
         } else if(o instanceof Plus){
-            ((Plus) o).G1.setLayoutY(350);
-            ((Plus) o).G2.setLayoutY(350);
+            ((Plus) o).G1.setLayoutY(y);
+            ((Plus) o).G2.setLayoutY(y);
             GameScreen.getChildren().addAll(((Plus) o).G1, ((Plus) o).G2);
         } else if(o instanceof Concentric){
-            ((Concentric) o).G1.setLayoutY(350);
-            ((Concentric) o).G2.setLayoutY(350);
+            ((Concentric) o).G1.setLayoutY(y);
+            ((Concentric) o).G2.setLayoutY(y);
             GameScreen.getChildren().addAll(((Concentric) o).G1, ((Concentric) o).G2);
         }
         onScreen.add(o);
-        AnimationTi.start();
     }
 
     private class Timer extends AnimationTimer{
         @Override
         public void handle(long time){
             gravity();
-
-//            ArrayList<Obstacle> chooseOne = new ArrayList<>();
-//            chooseOne.add(new Rectangle());
-//            chooseOne.add(new Triangle());
-//            chooseOne.add(new Concentric());
-//            chooseOne.add(new Eight());
-//            chooseOne.add(new Plus());
-//            System.out.println(MainBall.C.getTranslateY());
             if(MainBall.C.getTranslateY()<-300){
-                MainBall.C.setTranslateY(MainBall.C.getTranslateY()+5);
-                for(Obstacle o: onScreen){
-                    if(o instanceof Triangle){
-                        ((Triangle) o).G.setTranslateY(((Triangle) o).G.getTranslateY()+5);
-                    }
-                     if(o instanceof Rectangle){
-                        ((Rectangle) o).G.setTranslateY(((Rectangle) o).G.getTranslateY()+5);
-                    }
-                    if(o instanceof Eight){
-                        ((Eight) o).G1.setTranslateY(((Eight) o).G1.getTranslateY()+5);
-                        ((Eight) o).G2.setTranslateY(((Eight) o).G2.getTranslateY()+5);
-                    }
-                    if(o instanceof Plus){
-                        ((Plus) o).G1.setTranslateY(((Plus) o).G1.getTranslateY()+5);
-                        ((Plus) o).G2.setTranslateY(((Plus) o).G2.getTranslateY()+5);
-                    }
-                    if(o instanceof Concentric){
-                        ((Concentric) o).G1.setTranslateY(((Concentric) o).G1.getTranslateY()+5);
-                        ((Concentric) o).G2.setTranslateY(((Concentric) o).G2.getTranslateY()+5);
-                    }
-                }
+                moveScreenDown();
             }
             // Give Random Color to Ball;
             if(!BallColor){
-                ArrayList<String> allcolors=new ArrayList<>();
-                allcolors.add("#FAE100");
-                allcolors.add("#900DFF");
-                allcolors.add("#FF0181");
-                allcolors.add("#32DBF0");
-                Random rand = new Random();
-                int c = rand.nextInt(4);
-                MainBall.C.setFill(Paint.valueOf(allcolors.get(c)));
+                getRandomColorOnBall();
                 BallColor=true;
             }
             MainBall.C.toFront();
+        }
+    }
+
+    public void getRandomColorOnBall() {
+        ArrayList<String> allcolors=new ArrayList<>();
+        allcolors.add("#FAE100");
+        allcolors.add("#900DFF");
+        allcolors.add("#FF0181");
+        allcolors.add("#32DBF0");
+        Random rand = new Random();
+        int c = rand.nextInt(4);
+        MainBall.C.setFill(Paint.valueOf(allcolors.get(c)));
+    }
+
+    public void moveScreenDown() {
+        MainBall.C.setTranslateY(MainBall.C.getTranslateY()+20);
+        boolean toAdd=false;
+        for(Obstacle o: onScreen){
+            if(o instanceof Triangle){
+                ((Triangle) o).G.setTranslateY(((Triangle) o).G.getTranslateY()+5);
+                if(((Triangle) o).G.getBoundsInParent().getMinY()>700) {
+                    toAdd=true;
+                    GameScreen.getChildren().removeAll(((Triangle) o).G);
+                }
+            }
+            if(o instanceof Rectangle){
+                ((Rectangle) o).G.setTranslateY(((Rectangle) o).G.getTranslateY()+5);
+                if(((Rectangle) o).G.getBoundsInParent().getMinY()>700) {
+                    toAdd=true;
+                    GameScreen.getChildren().removeAll(((Rectangle) o).G);
+                }
+            }
+            if(o instanceof Eight){
+                ((Eight) o).G1.setTranslateY(((Eight) o).G1.getTranslateY()+5);
+                ((Eight) o).G2.setTranslateY(((Eight) o).G2.getTranslateY()+5);
+                if(((Eight) o).G1.getBoundsInParent().getMinY()>700) {
+                    toAdd=true;
+                    GameScreen.getChildren().removeAll(((Eight) o).G1);
+                    GameScreen.getChildren().removeAll(((Eight) o).G2);
+                }
+            }
+            if(o instanceof Plus){
+                ((Plus) o).G1.setTranslateY(((Plus) o).G1.getTranslateY()+5);
+                ((Plus) o).G2.setTranslateY(((Plus) o).G2.getTranslateY()+5);
+                if(((Plus) o).G1.getBoundsInParent().getMinY()>700) {
+                    toAdd=true;
+                    GameScreen.getChildren().removeAll(((Plus) o).G1);
+                    GameScreen.getChildren().removeAll(((Plus) o).G2);
+                }
+            }
+            if(o instanceof Concentric){
+                ((Concentric) o).G1.setTranslateY(((Concentric) o).G1.getTranslateY()+5);
+                ((Concentric) o).G2.setTranslateY(((Concentric) o).G2.getTranslateY()+5);
+                if(((Concentric) o).G1.getBoundsInParent().getMinY()>700) {
+                    toAdd=true;
+                    GameScreen.getChildren().removeAll(((Concentric) o).G1);
+                    GameScreen.getChildren().removeAll(((Concentric) o).G2);
+                }
+            }
+        }
+        if(toAdd){
+            addRandomObstacle(-350);
+            onScreen.remove(0);
         }
     }
 

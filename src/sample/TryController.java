@@ -29,8 +29,8 @@ public class TryController {
         public void handle(long time){
             Rotate RTriangle1 = new Rotate();
             RTriangle1.setAngle(1);
-            RTriangle1.setPivotX(0);
-            RTriangle1.setPivotY(0);
+            RTriangle1.setPivotX(20);
+            RTriangle1.setPivotY(96);
             Triangle.getTransforms().add(RTriangle1);
             Rotate RRectangle1 = new Rotate();
             RRectangle1.setAngle(1);
@@ -67,7 +67,6 @@ public class TryController {
             RPlus2.setPivotX(64);
             RPlus2.setPivotY(0);
             Plus2.getTransforms().add(RPlus1);
-
             Star.setScaleX(Star.getScaleX()+diff);
             Star.setScaleY(Star.getScaleY()+diff);
             if(Star.getScaleX()>=2.5) {
