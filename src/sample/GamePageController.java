@@ -77,6 +77,7 @@ public class GamePageController implements Initializable {
 //            chooseOne.add(new Plus());
 //            System.out.println(MainBall.C.getTranslateY());
             if(MainBall.C.getTranslateY()<-300){
+                MainBall.C.setTranslateY(MainBall.C.getTranslateY()+5);
                 for(Obstacle o: onScreen){
                     if(o instanceof Triangle){
                         ((Triangle) o).G.setTranslateY(((Triangle) o).G.getTranslateY()+5);
@@ -97,7 +98,6 @@ public class GamePageController implements Initializable {
                         ((Concentric) o).G2.setTranslateY(((Concentric) o).G2.getTranslateY()+5);
                     }
                 }
-                MainBall.C.setTranslateY(-260);
             }
             // Give Random Color to Ball;
             if(!BallColor){
