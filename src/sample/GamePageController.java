@@ -169,7 +169,6 @@ public class GamePageController implements Initializable {
         URL path = getClass().getResource("/assets/dead.wav");
         AudioClip ac = new AudioClip(path.toString());
         ac.play();
-
         // Just for now
         Stage s=(Stage)PauseB.getScene().getWindow();
         s.close();
