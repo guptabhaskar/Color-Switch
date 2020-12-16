@@ -27,11 +27,6 @@ public class TryController {
     private class Timer extends AnimationTimer{
         @Override
         public void handle(long time){
-            Rotate RTriangle1 = new Rotate();
-            RTriangle1.setAngle(1);
-            RTriangle1.setPivotX(20);
-            RTriangle1.setPivotY(96);
-            Triangle.getTransforms().add(RTriangle1);
             Rotate RRectangle1 = new Rotate();
             RRectangle1.setAngle(1);
             RRectangle1.setPivotX(0);

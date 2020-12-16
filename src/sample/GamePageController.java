@@ -68,19 +68,13 @@ public class GamePageController implements Initializable {
     private void addRandomObstacle(double y) throws IOException {
         ArrayList<Obstacle> chooseOne = new ArrayList<>();
         chooseOne.add(new Rectangle());
-        chooseOne.add(new Triangle());
         chooseOne.add(new Concentric());
         chooseOne.add(new Eight());
         chooseOne.add(new Plus());
         Random r = new Random();
-        int c = r.nextInt(5);
+        int c = r.nextInt(4);
         Obstacle o = chooseOne.get(c);
-        if(o instanceof Triangle){
-            ((Triangle) o).G.setLayoutY(y);
-            GameScreen.getChildren().addAll(((Triangle) o).G);
-            addStar(y + 70);
-            addColorSwitcher(y-70);
-        } else if(o instanceof Rectangle){
+        if(o instanceof Rectangle){
             ((Rectangle) o).G.setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).G);
             addStar(y);
@@ -126,17 +120,21 @@ public class GamePageController implements Initializable {
             MainBall.C.toFront();
             PauseB.toFront();
             ScoreL.toFront();
-            checkCollision();
+//            try {
+//                checkCollision();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
     @FXML Label ScoreL;
-    private void checkCollision(){
+    private void checkCollision() throws IOException {
         for(Star s: StarsOnScreen) {
             if(s.hit(MainBall)){
                 ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 1));
                 GameScreen.getChildren().remove(s.G);
-                StarsOnScreen.remove(s);
+                StarsOnScreen.remove(0);
                 break;
             }
         }
@@ -144,22 +142,35 @@ public class GamePageController implements Initializable {
             if(cs.hit(MainBall)) {
                 getRandomColorOnBall();
                 GameScreen.getChildren().remove(cs.G);
-                ColorSwitcherOnScreen.remove(cs);
+                ColorSwitcherOnScreen.remove(0);
                 break;
             }
         }
-
         for(Obstacle o: ObstaclesOnScreen) {
-
+//            if(false) {
+            if(o.hit(MainBall)) {
+                goToScorePage();
+                break;
+            }
         }
+    }
+
+    public void goToScorePage() throws IOException {
+//        Stage s=(Stage)PauseB.getScene().getWindow();
+//        Parent root = FXMLLoader.load(getClass().getResource("PausePage.fxml"));
+//        s.setScene(new Scene(root, 450, 700));
+//        s.show();
+        System.out.println("ScorePage OP");
+//        AnimationTi.stop();
+//        PauseButtonAction(new ActionEvent());
     }
 
     public void getRandomColorOnBall() {
         ArrayList<String> allcolors=new ArrayList<>();
-        allcolors.add("#FAE100");
-        allcolors.add("#900DFF");
-        allcolors.add("#FF0181");
-        allcolors.add("#32DBF0");
+        allcolors.add("#fae100");
+        allcolors.add("#900dff");
+        allcolors.add("#ff0181");
+        allcolors.add("#32dbf0");
         Random rand = new Random();
         int c = rand.nextInt(4);
         MainBall.C.setFill(Paint.valueOf(allcolors.get(c)));
@@ -169,13 +180,6 @@ public class GamePageController implements Initializable {
         MainBall.C.setTranslateY(MainBall.C.getTranslateY()+20);
         boolean toAdd=false;
         for(Obstacle o: ObstaclesOnScreen){
-            if(o instanceof Triangle){
-                ((Triangle) o).G.setTranslateY(((Triangle) o).G.getTranslateY()+5);
-                if(((Triangle) o).G.getBoundsInParent().getMinY()>700) {
-                    toAdd=true;
-                    GameScreen.getChildren().removeAll(((Triangle) o).G);
-                }
-            }
             if(o instanceof Rectangle){
                 ((Rectangle) o).G.setTranslateY(((Rectangle) o).G.getTranslateY()+5);
                 if(((Rectangle) o).G.getBoundsInParent().getMinY()>700) {
