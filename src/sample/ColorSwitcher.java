@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Shape;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ColorSwitcher extends Effects {
     Group G;
