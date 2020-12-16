@@ -105,7 +105,7 @@ public class GamePageController implements Initializable {
         @Override
         public void handle(long time){
             gravity();
-            if(MainBall.C.getTranslateY()<-300){
+            if(MainBall.C.getBoundsInParent().getMinY()<300){
                 try {
                     moveScreenDown();
                 } catch (IOException e) {
