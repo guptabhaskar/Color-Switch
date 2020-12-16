@@ -11,8 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
@@ -28,7 +28,8 @@ public class GamePageController implements Initializable {
     boolean BallColor=false; // To check if ball has random color or not in start
     AnimationTimer AnimationTi = new Timer();
     ArrayList<Obstacle> onScreen = new ArrayList<>();
-    Circle faltu=new Circle();
+    ArrayList<Star> StarsOnScreen = new ArrayList<>();
+    ArrayList<ColorSwitcher> ColorSwitcherOnScreen = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,7 +38,29 @@ public class GamePageController implements Initializable {
         addRandomObstacle(300);
         addRandomObstacle(-50);
         addRandomObstacle(-400);
+        try {
+            addStar(300);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            addColorSwitcher(500);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         AnimationTi.start();
+    }
+    private void addStar(double y) throws IOException {
+        Star s = new Star();
+        s.G.setLayoutY(y);
+        GameScreen.getChildren().addAll(s.G);
+        StarsOnScreen.add(s);
+    }
+    private void addColorSwitcher(double y) throws IOException {
+        ColorSwitcher cs = new ColorSwitcher();
+        cs.G.setLayoutY(y);
+        GameScreen.getChildren().addAll(cs.G);
+        ColorSwitcherOnScreen.add(cs);
     }
 
     private void addRandomObstacle(double y){
@@ -144,6 +167,12 @@ public class GamePageController implements Initializable {
                     GameScreen.getChildren().removeAll(((Concentric) o).G2);
                 }
             }
+        }
+        for(Star s1: StarsOnScreen) {
+            s1.G.setTranslateY(s1.G.getTranslateY()+5);
+        }
+        for(ColorSwitcher cs1: ColorSwitcherOnScreen) {
+            cs1.G.setTranslateY(cs1.G.getTranslateY()+5);
         }
         if(toAdd){
             addRandomObstacle(-350);
