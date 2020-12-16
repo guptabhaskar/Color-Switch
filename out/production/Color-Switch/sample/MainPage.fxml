@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="450.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainPageController">
+   <children>
+      <Label layoutX="131.0" layoutY="115.0" prefHeight="91.0" prefWidth="175.0" text="SWITCH" textFill="WHITE">
+         <font>
+            <Font name="Ayuthaya" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="121.0" layoutY="27.0" prefHeight="100.0" prefWidth="210.0" text="C  L  R" textFill="WHITE">
+         <font>
+            <Font name="Ayuthaya" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="PlayB" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#startNewGameAction" onMouseEntered="#mouseEnterPlay" onMouseExited="#mouseExitPlay" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #1C69CF;" text="PLAY NOW!" textFill="WHITE">
+         <font>
+            <Font name="Ayuthaya" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="SaveB" layoutX="250.0" layoutY="425.0" mnemonicParsing="false" onAction="#ShowSavedGameAction" onMouseEntered="#mouseEnterSave" onMouseExited="#mouseExitSave" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #6E0F1F;" text="SAVED GAME" textFill="WHITE">
+         <font>
+            <Font name="Ayuthaya" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="ExitB" layoutX="250.0" layoutY="500.0" mnemonicParsing="false" onAction="#ExitGameAction" onMouseEntered="#mouseEnterExit" onMouseExited="#mouseExitExit" prefHeight="30.0" prefWidth="200.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #000000;" text="EXIT" textFill="WHITE">
+         <font>
+            <Font name="Ayuthaya" size="24.0" />
+         </font>
+      </Button>
+      <Group fx:id="O1" layoutX="177.0" layoutY="77.0" scaleX="0.25" scaleY="0.25">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="O2" layoutX="262.0" layoutY="77.0" rotate="-90.0" scaleX="0.25" scaleY="0.25">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="D1" layoutX="138.0" layoutY="450.0" scaleX="0.8" scaleY="0.8">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="D2" layoutX="138.0" layoutY="450.0" scaleX="-0.65" scaleY="-0.65">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="D3" layoutX="138.0" layoutY="450.0" scaleX="0.52" scaleY="0.52">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#272727" radius="80.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Circle fx:id="BounceBall" fill="WHITE" layoutX="138.0" layoutY="450.0" radius="12.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="2.0" />
+      <Line fx:id="L1" endX="48.75" layoutX="56.25" layoutY="587.0" startX="-56.25" stroke="#fae100" strokeWidth="10.0" />
+      <Line fx:id="L4" endX="16.0" layoutX="433.0" layoutY="587.0" startX="-91.0" stroke="#ff0181" strokeWidth="10.0" />
+      <Line fx:id="L2" endX="47.0" layoutX="176.0" layoutY="587.0" startX="-66.0" stroke="#900dff" strokeWidth="10.0" />
+      <Line fx:id="L3" endX="27.0" layoutX="305.0" layoutY="587.0" startX="-77.0" stroke="#32dbf0" strokeWidth="10.0" />
+   </children>
+</AnchorPane>
