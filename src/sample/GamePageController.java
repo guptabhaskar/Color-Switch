@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -27,7 +28,7 @@ public class GamePageController implements Initializable {
 
     boolean BallColor=false; // To check if ball has random color or not in start
     AnimationTimer AnimationTi = new Timer();
-    ArrayList<Obstacle> onScreen = new ArrayList<>();
+    ArrayList<Obstacle> ObstaclesOnScreen = new ArrayList<>();
     ArrayList<Star> StarsOnScreen = new ArrayList<>();
     ArrayList<ColorSwitcher> ColorSwitcherOnScreen = new ArrayList<>();
 
@@ -92,7 +93,7 @@ public class GamePageController implements Initializable {
             ((Concentric) o).G2.setLayoutY(y);
             GameScreen.getChildren().addAll(((Concentric) o).G1, ((Concentric) o).G2);
         }
-        onScreen.add(o);
+        ObstaclesOnScreen.add(o);
     }
 
     private class Timer extends AnimationTimer{
@@ -108,6 +109,33 @@ public class GamePageController implements Initializable {
                 BallColor=true;
             }
             MainBall.C.toFront();
+            PauseB.toFront();
+            ScoreL.toFront();
+            checkCollision();
+        }
+    }
+
+    @FXML Label ScoreL;
+    private void checkCollision(){
+        for(Star s: StarsOnScreen) {
+            if(s.hit(MainBall)){
+                ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 1));
+                GameScreen.getChildren().remove(s.G);
+                StarsOnScreen.remove(s);
+                break;
+            }
+        }
+        for(ColorSwitcher  cs: ColorSwitcherOnScreen) {
+            if(cs.hit(MainBall)) {
+                getRandomColorOnBall();
+                GameScreen.getChildren().remove(cs.G);
+                ColorSwitcherOnScreen.remove(cs);
+                break;
+            }
+        }
+
+        for(Obstacle o: ObstaclesOnScreen) {
+
         }
     }
 
@@ -125,7 +153,7 @@ public class GamePageController implements Initializable {
     public void moveScreenDown() {
         MainBall.C.setTranslateY(MainBall.C.getTranslateY()+20);
         boolean toAdd=false;
-        for(Obstacle o: onScreen){
+        for(Obstacle o: ObstaclesOnScreen){
             if(o instanceof Triangle){
                 ((Triangle) o).G.setTranslateY(((Triangle) o).G.getTranslateY()+5);
                 if(((Triangle) o).G.getBoundsInParent().getMinY()>700) {
@@ -176,7 +204,7 @@ public class GamePageController implements Initializable {
         }
         if(toAdd){
             addRandomObstacle(-350);
-            onScreen.remove(0);
+            ObstaclesOnScreen.remove(0);
         }
     }
 
