@@ -171,8 +171,7 @@ public class GamePageController implements Initializable {
         ac.play();
 
         // Just for now
-        Stage s=(Stage)PauseB.getScene().getWindow();
-        s.close();
+        System.out.println("Dead");
     }
 
     public void getRandomColorOnBall() {
