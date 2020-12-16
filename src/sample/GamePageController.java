@@ -36,6 +36,9 @@ public class GamePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        URL path = getClass().getResource("/assets/start.wav");
+        AudioClip ac = new AudioClip(path.toString());
+        ac.play();
         MainBall.C.setLayoutY(650);
         GameScreen.getChildren().add(MainBall.C);
         try {
@@ -135,6 +138,9 @@ public class GamePageController implements Initializable {
     private void checkCollision() throws IOException {
         for(Star s: StarsOnScreen) {
             if(s.hit(MainBall)){
+                URL path = getClass().getResource("/assets/star.wav");
+                AudioClip ac = new AudioClip(path.toString());
+                ac.play();
                 ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 1));
                 GameScreen.getChildren().remove(s.G);
                 StarsOnScreen.remove(0);
@@ -143,6 +149,9 @@ public class GamePageController implements Initializable {
         }
         for(ColorSwitcher  cs: ColorSwitcherOnScreen) {
             if(cs.hit(MainBall)) {
+                URL path = getClass().getResource("/assets/colorswitch.wav");
+                AudioClip ac = new AudioClip(path.toString());
+                ac.play();
                 getRandomColorOnBall();
                 GameScreen.getChildren().remove(cs.G);
                 ColorSwitcherOnScreen.remove(0);
