@@ -12,9 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -241,6 +244,9 @@ public class GamePageController implements Initializable {
     }
 
     public void BallJumpClickAction(MouseEvent m) {
+        URL path = getClass().getResource("/assets/jump.wav");
+        AudioClip ac = new AudioClip(path.toString());
+        ac.play();
         consta=1;
         f=false;
         tr.setDuration(Duration.millis(300));
