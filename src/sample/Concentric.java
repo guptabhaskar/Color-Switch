@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Shape;
 
 import java.io.IOException;
 
@@ -28,5 +29,30 @@ public class Concentric extends Obstacle {
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean hit(Ball MainBall) {
+        for(Node n: G1.getChildren()){
+            if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
+                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
+                    System.out.println(n);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        for(Node n: G2.getChildren()){
+            if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
+                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
+                    System.out.println(n);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 }
