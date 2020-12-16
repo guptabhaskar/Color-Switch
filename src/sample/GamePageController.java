@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -110,7 +111,7 @@ public class GamePageController implements Initializable {
         @Override
         public void handle(long time){
             gravity();
-            if(MainBall.C.getBoundsInParent().getMinY()<300){
+            if(MainBall.C.getBoundsInParent().getMinY()<450){
                 try {
                     moveScreenDown();
                 } catch (IOException e) {
@@ -125,11 +126,11 @@ public class GamePageController implements Initializable {
             MainBall.C.toFront();
             PauseB.toFront();
             ScoreL.toFront();
-            try {
-                checkCollision();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                checkCollision();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -169,6 +170,7 @@ public class GamePageController implements Initializable {
         URL path = getClass().getResource("/assets/dead.wav");
         AudioClip ac = new AudioClip(path.toString());
         ac.play();
+
         // Just for now
         Stage s=(Stage)PauseB.getScene().getWindow();
         s.close();
@@ -186,49 +188,94 @@ public class GamePageController implements Initializable {
     }
 
     public void moveScreenDown() throws IOException {
-        MainBall.C.setTranslateY(MainBall.C.getTranslateY()+20);
+        Duration d=Duration.millis((500));
+        TranslateTransition RectAnim =new TranslateTransition();
+//        BallAnim.setDuration(Duration.millis(100));
+//        BallAnim.setToY(MainBall.C.getTranslateY() + 20);
+//        BallAnim.setNode(MainBall.C);
+//        BallAnim.play();
+        double g=1;
+        double ds=0.1;
         boolean toAdd=false;
         for(Obstacle o: ObstaclesOnScreen){
+
             if(o instanceof Rectangle){
-                ((Rectangle) o).G.setTranslateY(((Rectangle) o).G.getTranslateY()+5);
+
+                ((Rectangle) o).G.setTranslateY(((Rectangle) o).G.getTranslateY()+g);
                 if(((Rectangle) o).G.getBoundsInParent().getMinY()>700) {
                     toAdd=true;
                     GameScreen.getChildren().removeAll(((Rectangle) o).G);
                 }
             }
             if(o instanceof Eight){
-                ((Eight) o).G1.setTranslateY(((Eight) o).G1.getTranslateY()+5);
-                ((Eight) o).G2.setTranslateY(((Eight) o).G2.getTranslateY()+5);
+//                Eight1.setDuration(d);
+//                Eight1.setByY((((Eight) o).G1.getTranslateY()+5));
+//                Eight1.setNode(((Eight) o).G1);
+//                Eight2.setDuration(d);
+//                Eight2.setByY((((Eight) o).G2.getTranslateY()+5));
+//                Eight2.setNode(((Eight) o).G2);
+//                Eight1.play();
+//                Eight2.play();
+                ((Eight) o).G1.setTranslateY(((Eight) o).G1.getTranslateY()+g);
+                ((Eight) o).G2.setTranslateY(((Eight) o).G2.getTranslateY()+g);
                 if(((Eight) o).G1.getBoundsInParent().getMinY()>700) {
                     toAdd=true;
+//                    Eight1.pause();
+//                    Eight2.pause();
+
                     GameScreen.getChildren().removeAll(((Eight) o).G1);
                     GameScreen.getChildren().removeAll(((Eight) o).G2);
                 }
             }
             if(o instanceof Plus){
-                ((Plus) o).G1.setTranslateY(((Plus) o).G1.getTranslateY()+5);
-                ((Plus) o).G2.setTranslateY(((Plus) o).G2.getTranslateY()+5);
+//                Eight1.setDuration(d);
+//                Eight1.setByY((((Plus) o).G1.getTranslateY()+5));
+//                Eight1.setNode(((Plus) o).G1);
+//                Eight2.setDuration(d);
+//                Eight2.setByY((((Plus) o).G2.getTranslateY()+5));
+//                Eight2.setNode(((Plus) o).G2);
+//                Eight1.play();
+//                Eight2.play();
+                ((Plus) o).G1.setTranslateY(((Plus) o).G1.getTranslateY()+g);
+                ((Plus) o).G2.setTranslateY(((Plus) o).G2.getTranslateY()+g);
                 if(((Plus) o).G1.getBoundsInParent().getMinY()>700) {
                     toAdd=true;
+//                    Eight1.pause();
+//                    Eight2.pause();
                     GameScreen.getChildren().removeAll(((Plus) o).G1);
                     GameScreen.getChildren().removeAll(((Plus) o).G2);
                 }
             }
             if(o instanceof Concentric){
-                ((Concentric) o).G1.setTranslateY(((Concentric) o).G1.getTranslateY()+5);
-                ((Concentric) o).G2.setTranslateY(((Concentric) o).G2.getTranslateY()+5);
+//                Eight1.setDuration(d);
+//                Eight1.setByY((((Concentric) o).G1.getTranslateY()+5));
+//                Eight1.setNode(((Concentric) o).G1);
+//                Eight2.setDuration(d);
+//                Eight2.setByY((((Concentric) o).G2.getTranslateY()+5));
+//                Eight2.setNode(((Concentric) o).G2);
+//                Eight1.play();
+//                Eight2.play();
+
+                ((Concentric) o).G1.setTranslateY(((Concentric) o).G1.getTranslateY()+g);
+                ((Concentric) o).G2.setTranslateY(((Concentric) o).G2.getTranslateY()+g);
                 if(((Concentric) o).G1.getBoundsInParent().getMinY()>700) {
                     toAdd=true;
+//                    Eight1.pause();
+//                    Eight2.pause();
                     GameScreen.getChildren().removeAll(((Concentric) o).G1);
                     GameScreen.getChildren().removeAll(((Concentric) o).G2);
                 }
             }
         }
         for(Star s1: StarsOnScreen) {
-            s1.G.setTranslateY(s1.G.getTranslateY()+5);
+//            RectAnim.setDuration(Duration.millis(100));
+//            RectAnim.setByY((((s) o).G1.getTranslateY()+5));
+//            RectAnim.setNode(((Eight) o).G1);
+//            RectAnim.play();
+            s1.G.setTranslateY(s1.G.getTranslateY()+g);
         }
         for(ColorSwitcher cs1: ColorSwitcherOnScreen) {
-            cs1.G.setTranslateY(cs1.G.getTranslateY()+5);
+            cs1.G.setTranslateY(cs1.G.getTranslateY()+g);
         }
         if(toAdd){
             addRandomObstacle(-700);
@@ -248,7 +295,11 @@ public class GamePageController implements Initializable {
     private double differ=0.01;
     private double consta=1;
     private boolean f=true;
-    TranslateTransition tr=new TranslateTransition();
+    TranslateTransition BallAnim =new TranslateTransition();
+
+    TranslateTransition Eight1 =new TranslateTransition();
+    TranslateTransition Eight2 =new TranslateTransition();
+//    TranslateTransition RectAnim =new TranslateTransition();
     public void gravity(){
         if(!f) {
             MainBall.C.setTranslateY(MainBall.C.getTranslateY() + consta);
@@ -262,9 +313,15 @@ public class GamePageController implements Initializable {
         ac.play();
         consta=1;
         f=false;
-        tr.setDuration(Duration.millis(300));
-        tr.setToY(MainBall.C.getTranslateY() - 50);
-        tr.setNode(MainBall.C);
-        tr.play();
+        BallAnim.setDuration(Duration.millis(100));
+        BallAnim.setNode(MainBall.C);
+        System.out.println(MainBall.C.getBoundsInParent().getMinY());
+        if(MainBall.C.getBoundsInParent().getMinY()>100){
+        BallAnim.setToY(MainBall.C.getTranslateY() - 50);
+        BallAnim.play();
+        }
+        else {
+            BallAnim.pause();
+        }
     }
 }
