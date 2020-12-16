@@ -35,8 +35,7 @@ public class Concentric extends Obstacle {
     public boolean hit(Ball MainBall) {
         for(Node n: G1.getChildren()){
             if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
-                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
-                    System.out.println(n);
+                if(!((Shape) n).getFill().equals(MainBall.C.getFill())){
                     return true;
                 } else {
                     return false;
@@ -45,8 +44,7 @@ public class Concentric extends Obstacle {
         }
         for(Node n: G2.getChildren()){
             if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
-                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
-                    System.out.println(n);
+                if(!((Shape) n).getFill().equals(MainBall.C.getFill())){
                     return true;
                 } else {
                     return false;

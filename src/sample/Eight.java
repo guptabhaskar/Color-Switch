@@ -35,7 +35,7 @@ public class Eight extends Obstacle {
     public boolean hit(Ball MainBall) {
         for(Node n: G1.getChildren()){
             if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
-                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
+                if(!((Shape) n).getFill().equals(MainBall.C.getFill())){
                     return true;
                 } else {
                     return false;

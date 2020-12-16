@@ -17,9 +17,9 @@ public class Ball {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(Node node:Obstacles.getChildren()) {
-            if(node.getId().equals("MainBall")) {
-                C = (Circle) node;
+        for(Node n:Obstacles.getChildren()) {
+            if(n.getId().equals("MainBall")) {
+                C = (Circle) n;
                 break;
             }
         }

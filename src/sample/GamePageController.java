@@ -22,7 +22,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GamePageController implements Initializable {
-    Ball MainBall = new Ball();
+    Ball MainBall=new Ball();
     @FXML private AnchorPane GameScreen;
 
     boolean BallColor=false; // To check if ball has random color or not in start
@@ -41,12 +41,12 @@ public class GamePageController implements Initializable {
             e.printStackTrace();
         }
         try {
-            addRandomObstacle(-100);
+            addRandomObstacle(-200);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            addRandomObstacle(-500);
+            addRandomObstacle(-700);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,11 +80,11 @@ public class GamePageController implements Initializable {
             addStar(y);
             addColorSwitcher(y-150);
         } else if(o instanceof Eight){
-            ((Eight) o).G1.setLayoutY(y);
-            ((Eight) o).G2.setLayoutY(y);
+            ((Eight) o).G1.setLayoutY(y-300);
+            ((Eight) o).G2.setLayoutY(y-300);
             GameScreen.getChildren().addAll(((Eight) o).G1, ((Eight) o).G2);
             addStar(y-100);
-            addColorSwitcher(y-220);
+            addColorSwitcher(y-200);
         } else if(o instanceof Plus){
             ((Plus) o).G1.setLayoutY(y);
             ((Plus) o).G2.setLayoutY(y);
@@ -92,11 +92,11 @@ public class GamePageController implements Initializable {
             addStar(y-70);
             addColorSwitcher(y-140);
         } else if(o instanceof Concentric){
-            ((Concentric) o).G1.setLayoutY(y);
-            ((Concentric) o).G2.setLayoutY(y);
+            ((Concentric) o).G1.setLayoutY(y-300);
+            ((Concentric) o).G2.setLayoutY(y-300);
             GameScreen.getChildren().addAll(((Concentric) o).G1, ((Concentric) o).G2);
-            addStar(y - 10);
-            addColorSwitcher(y-140);
+            addStar(y);
+            addColorSwitcher(y-200);
         }
         ObstaclesOnScreen.add(o);
     }
@@ -120,11 +120,11 @@ public class GamePageController implements Initializable {
             MainBall.C.toFront();
             PauseB.toFront();
             ScoreL.toFront();
-//            try {
-//                checkCollision();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                checkCollision();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -147,7 +147,6 @@ public class GamePageController implements Initializable {
             }
         }
         for(Obstacle o: ObstaclesOnScreen) {
-//            if(false) {
             if(o.hit(MainBall)) {
                 goToScorePage();
                 break;
@@ -156,13 +155,7 @@ public class GamePageController implements Initializable {
     }
 
     public void goToScorePage() throws IOException {
-//        Stage s=(Stage)PauseB.getScene().getWindow();
-//        Parent root = FXMLLoader.load(getClass().getResource("PausePage.fxml"));
-//        s.setScene(new Scene(root, 450, 700));
-//        s.show();
         System.out.println("ScorePage OP");
-//        AnimationTi.stop();
-//        PauseButtonAction(new ActionEvent());
     }
 
     public void getRandomColorOnBall() {
@@ -222,7 +215,7 @@ public class GamePageController implements Initializable {
             cs1.G.setTranslateY(cs1.G.getTranslateY()+5);
         }
         if(toAdd){
-            addRandomObstacle(-500);
+            addRandomObstacle(-700);
             ObstaclesOnScreen.remove(0);
         }
     }
