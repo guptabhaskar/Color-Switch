@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Shape;
+
 import java.io.IOException;
 
 public class Rectangle extends Obstacle{
@@ -21,5 +23,19 @@ public class Rectangle extends Obstacle{
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean hit(Ball MainBall) {
+        for(Node n: G.getChildren()){
+            if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
+                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 }
