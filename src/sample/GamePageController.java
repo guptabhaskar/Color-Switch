@@ -17,7 +17,6 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -167,7 +166,13 @@ public class GamePageController implements Initializable {
     }
 
     public void goToScorePage() throws IOException {
-        System.out.println("ScorePage OP");
+        URL path = getClass().getResource("/assets/dead.wav");
+        AudioClip ac = new AudioClip(path.toString());
+        ac.play();
+
+        // Just for now
+        Stage s=(Stage)PauseB.getScene().getWindow();
+        s.close();
     }
 
     public void getRandomColorOnBall() {
