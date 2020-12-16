@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -106,7 +107,7 @@ public class GamePageController implements Initializable {
         ObstaclesOnScreen.add(o);
     }
 
-    private class Timer extends AnimationTimer{
+    private class Timer extends AnimationTimer  {
         @Override
         public void handle(long time){
             gravity();
@@ -245,7 +246,7 @@ public class GamePageController implements Initializable {
         s.show();
     }
 
-    private double differ=0.01;
+    private double differ=0.015;
     private double consta=1;
     private boolean f=true;
     TranslateTransition BallAnim =new TranslateTransition();
