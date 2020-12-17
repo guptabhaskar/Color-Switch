@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -195,8 +196,19 @@ public class GamePageController implements Initializable {
         // Just for now
         System.out.println("Dead");
         MainBall.getC().setLayoutY(MainBall.getC().getLayoutY()-50);
-        Parent root = FXMLLoader.load(getClass().getResource("ScorePage.fxml"));
-        Main.load(root);
+        FXMLLoader f = new FXMLLoader();
+//        f.load()
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setController(new ScorePageController());
+            loader.setLocation(getClass().getResource("/sample/ScorePage.fxml"));
+            Parent root = loader.load();
+            Main.load(root);
+            ((ScorePageController)loader.getController()).update(Integer.parseInt(ScoreL.getText()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void getRandomColorOnBall() {

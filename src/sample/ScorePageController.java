@@ -4,20 +4,20 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ScorePageController {
-    // Controller
-    public ScorePageController(){
-        RotateT.start();
-    }
-
+public class ScorePageController implements Initializable {
     // For Rotating O's, Star Effect and New Game Button Effect
     @FXML private Group O11;
     @FXML private Group O22;
@@ -25,9 +25,20 @@ public class ScorePageController {
     @FXML private SVGPath S22;
     @FXML private SVGPath S33;
     @FXML private Button NewGameBu;
+    @FXML private Label CurrSc;
+
+    public void update(int n) {
+        CurrSc.setText(String.valueOf(n));
+    }
+
     private double diff=0.025;
     private double diffB=0.004;
     AnimationTimer RotateT = new Timer();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        RotateT.start();
+    }
 
     private class Timer extends AnimationTimer{
         @Override
@@ -63,7 +74,7 @@ public class ScorePageController {
 
     // For Home Button
     @FXML private Button HomeBu;
-    public void homeButtonAction(ActionEvent m) throws IOException {
+    public void homeButtonAction(MouseEvent m) throws IOException {
         // Done IG
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         Main.load(root);
@@ -71,14 +82,14 @@ public class ScorePageController {
     }
 
     // For New Game Button
-    public void newGameButtonAction(ActionEvent a) throws IOException {
+    public void newGameButtonAction(MouseEvent a) throws IOException {
         // Start New Game
         Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
         Main.load(root);
         Main.removeFront();
     }
 
-    public void NewLifeButtonAction(ActionEvent a) {
+    public void NewLifeButtonAction(MouseEvent a) throws IOException {
         Main.back();
     }
 }
