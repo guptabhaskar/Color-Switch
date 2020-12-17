@@ -36,40 +36,34 @@ public class PausePageController {
 
     // For Save Button
     @FXML private Button SaveB;
-    public void saveButtonAction(ActionEvent a) throws IOException {
+    public void saveButtonAction(ActionEvent a) throws Exception {
         // Save Game and Go to Main Page
-        Stage s=(Stage)HomeB.getScene().getWindow();
+        GamePageController.Serialize();
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.load(root);
+        Main.removeFront();
     }
 
     // For Exit Button
     @FXML private Button ExitB;
     public void closeButtonAction(ActionEvent a) {
         // Done IG
-        Stage s=(Stage)ExitB.getScene().getWindow();
-        s.close();
+        System.exit(0);
     }
 
     // For Resume Button
     @FXML private SVGPath ResumeB;
     public void resumeButtonAction(MouseEvent m) throws IOException {
         // Resume Game Code Here
-        Stage s=(Stage)ResumeB.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.back();
     }
 
     // For Home Button
     @FXML private Button HomeB;
     public void homeButtonAction(MouseEvent m) throws IOException {
         // Done IG
-        Stage s=(Stage)HomeB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.load(root);
     }
 
     // For Rotating Resume Button

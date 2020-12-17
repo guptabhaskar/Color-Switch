@@ -5,12 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainPageController {
@@ -24,8 +22,9 @@ public class MainPageController {
     @FXML private Button PlayB;
     public void startNewGameAction(ActionEvent a) throws IOException {
         // Start New Game
-        Parent root = FXMLLoader.load(getClass().getResource("GameLoaded.fxml"));
-        Main.Player.load(root);
+        Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
+        Main.load(root);
+        Main.removeFront();
     }
 
     // Hover Effect for Buttons
@@ -59,14 +58,14 @@ public class MainPageController {
     public void ShowSavedGameAction(ActionEvent a) throws IOException {
         // Show Saved Games
         Parent root = FXMLLoader.load(getClass().getResource("LoadGamePage.fxml"));
-        Main.Player.load(root);
+        Main.load(root);
+        Main.removeFront();
     }
 
     // For Exit Button
     @FXML private Button ExitB;
     public void ExitGameAction(ActionEvent a) {
-        // Done IG
-        Main.Player.close();
+        System.exit(0);
     }
 
     // For Rotating Groups

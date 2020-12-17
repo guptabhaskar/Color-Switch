@@ -1,25 +1,13 @@
 package sample;
 
-import javafx.scene.paint.Paint;
-
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GameState implements Serializable {
-    private int highestScore;
     private ArrayList<ObstacleState> obstacles = new ArrayList<>();
     private int score;
     private double BallPos;
     private String BallColor;
-
-    public int getHighestScore() {
-        return highestScore;
-    }
-
-    public void setHighestScore(int highestScore) {
-        this.highestScore = highestScore;
-    }
 
     public ArrayList<ObstacleState> getObstacle() {
         return obstacles;

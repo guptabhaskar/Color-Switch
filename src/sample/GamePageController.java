@@ -17,13 +17,28 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GamePageController implements Initializable {
+    static GameStateArray G = new GameStateArray();
+    static GameState GS = new GameState();
+
+    public static void Serialize() throws Exception{
+        FileOutputStream fileOutputStream=new FileOutputStream("Save.txt");
+        ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(G);
+    }
+
+    public static void Deserialize() throws Exception{
+        FileInputStream fileInputStream=new FileInputStream("Save.txt");
+        ObjectInputStream objectInputStream=new ObjectInputStream(fileInputStream);
+        G=(GameStateArray) objectInputStream.readObject();
+    }
+
     Ball MainBall=new Ball();
     @FXML private AnchorPane GameScreen;
 
@@ -57,12 +72,14 @@ public class GamePageController implements Initializable {
         }
         AnimationTi.start();
     }
+
     private void addStar(double y) throws IOException {
         Star s = new Star();
         s.getG().setLayoutY(y);
         GameScreen.getChildren().addAll(s.getG());
         StarsOnScreen.add(s);
     }
+
     private void addColorSwitcher(double y) throws IOException {
         ColorSwitcher cs = new ColorSwitcher();
         cs.getG().setLayoutY(y);
@@ -76,30 +93,36 @@ public class GamePageController implements Initializable {
         chooseOne.add(new Concentric());
         chooseOne.add(new Eight());
         chooseOne.add(new Plus());
+        chooseOne.add(new NormalCircle());
         Random r = new Random();
-        int c = r.nextInt(4);
+        int c = r.nextInt(5);
         Obstacle o = chooseOne.get(c);
-        if(o instanceof Rectangle){
+        if(o instanceof Rectangle) {
             ((Rectangle) o).getG().setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).getG());
             addStar(y);
             addColorSwitcher(y-150);
-        } else if(o instanceof Eight){
+        } else if(o instanceof Eight) {
             ((Eight) o).getG1().setLayoutY(y-300);
             ((Eight) o).getG2().setLayoutY(y-300);
             GameScreen.getChildren().addAll(((Eight) o).getG1(), ((Eight) o).getG2());
             addStar(y-100);
             addColorSwitcher(y-200);
-        } else if(o instanceof Plus){
+        } else if(o instanceof Plus) {
             ((Plus) o).getG1().setLayoutY(y);
             ((Plus) o).getG2().setLayoutY(y);
             GameScreen.getChildren().addAll(((Plus) o).getG1(), ((Plus) o).getG2());
             addStar(y-70);
             addColorSwitcher(y-140);
-        } else if(o instanceof Concentric){
+        } else if(o instanceof Concentric) {
             ((Concentric) o).getG1().setLayoutY(y-300);
             ((Concentric) o).getG2().setLayoutY(y-300);
             GameScreen.getChildren().addAll(((Concentric) o).getG1(), ((Concentric) o).getG2());
+            addStar(y);
+            addColorSwitcher(y-200);
+        } else if(o instanceof NormalCircle) {
+            ((NormalCircle) o).getG().setLayoutY(y-300);
+            GameScreen.getChildren().addAll(((NormalCircle) o).getG());
             addStar(y);
             addColorSwitcher(y-200);
         }
@@ -109,32 +132,34 @@ public class GamePageController implements Initializable {
     private class Timer extends AnimationTimer  {
         @Override
         public void handle(long time){
-            gravity();
-            if(MainBall.getC().getBoundsInParent().getMinY()<450){
+            if(pause()) {
+                gravity();
+                if (MainBall.getC().getBoundsInParent().getMinY() < 300) {
+                    try {
+                        moveScreenDown();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Give Random Color to Ball;
+                if (!BallColor) {
+                    getRandomColorOnBall();
+                    BallColor = true;
+                }
+                MainBall.getC().toFront();
+                PauseB.toFront();
+                ScoreL.toFront();
                 try {
-                    moveScreenDown();
-                } catch (IOException e) {
+                    checkCollision();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-            // Give Random Color to Ball;
-            if(!BallColor){
-                getRandomColorOnBall();
-                BallColor=true;
-            }
-            MainBall.getC().toFront();
-            PauseB.toFront();
-            ScoreL.toFront();
-            try {
-                checkCollision();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
 
     @FXML Label ScoreL;
-    private void checkCollision() throws IOException {
+    private void checkCollision() throws Exception {
         for(Common s: StarsOnScreen) {
             if(s.hit(MainBall)){
                 URL path = getClass().getResource("/assets/star.wav");
@@ -165,13 +190,16 @@ public class GamePageController implements Initializable {
         }
     }
 
-    public void goToScorePage() throws IOException {
+    public void goToScorePage() throws Exception {
         URL path = getClass().getResource("/assets/dead.wav");
         AudioClip ac = new AudioClip(path.toString());
         ac.play();
 
         // Just for now
         System.out.println("Dead");
+        MainBall.getC().setLayoutY(MainBall.getC().getLayoutY()-50);
+        Parent root = FXMLLoader.load(getClass().getResource("ScorePage.fxml"));
+        Main.load(root);
     }
 
     public void getRandomColorOnBall() {
@@ -223,6 +251,13 @@ public class GamePageController implements Initializable {
                     GameScreen.getChildren().removeAll(((Concentric) o).getG2());
                 }
             }
+            if(o instanceof NormalCircle){
+                ((NormalCircle) o).getG().setTranslateY(((NormalCircle) o).getG().getTranslateY()+g);
+                if(((NormalCircle) o).getG().getBoundsInParent().getMinY()>700) {
+                    toAdd=true;
+                    GameScreen.getChildren().removeAll(((NormalCircle) o).getG());
+                }
+            }
         }
         for(Common s1: StarsOnScreen) {
             ((Star)s1).getG().setTranslateY(((Star)s1).getG().getTranslateY()+g);
@@ -238,11 +273,13 @@ public class GamePageController implements Initializable {
 
     // For Pause Button
     @FXML private Button PauseB;
-    public void PauseButtonAction(ActionEvent a) throws IOException {
-        Stage s=(Stage)PauseB.getScene().getWindow();
+    public void PauseButtonAction(ActionEvent a) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("PausePage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.load(root);
+    }
+
+    public boolean pause(){
+        return GameScreen.getScene()!=null;
     }
 
     private double differ=0.015;

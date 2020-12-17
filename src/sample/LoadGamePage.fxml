@@ -21,12 +21,7 @@
                 <Font name="Ayuthaya" size="48.0" />
             </font>
         </Label>
-        <Button fx:id="PlayB" contentDisplay="CENTER" layoutX="-7.0" layoutY="200.0" mnemonicParsing="false" onAction="#startNewGameAction" onMouseEntered="#mouseEnterPlay" onMouseExited="#mouseExitPlay" prefHeight="51.0" prefWidth="464.0" style="-fx-background-color: #1C69CF;" text="Game Saves" textFill="WHITE">
-            <font>
-                <Font name="Ayuthaya" size="24.0" />
-            </font>
-        </Button>
-        <Button fx:id="ExitB" layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onAction="#ExitGameAction" onMouseEntered="#mouseEnterExit" onMouseExited="#mouseExitExit" prefHeight="25.0" prefWidth="165.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #000000;" text="Back" textFill="WHITE">
+        <Button contentDisplay="CENTER" layoutX="-7.0" layoutY="200.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="464.0" style="-fx-background-color: #1C69CF;" text="Game Saves" textFill="WHITE">
             <font>
                 <Font name="Ayuthaya" size="24.0" />
             </font>
@@ -40,7 +35,6 @@
                 <Circle fill="#272727" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
             </children>
         </Group>
-        <Group fx:id="D3" layoutX="138.0" layoutY="450.0" scaleX="0.52" scaleY="0.52" />
         <Group fx:id="O2" layoutX="262.0" layoutY="77.0" rotate="-90.0" scaleX="0.25" scaleY="0.25">
             <children>
                 <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -51,17 +45,27 @@
             </children>
         </Group>
       <ListView layoutX="34.0" layoutY="260.0" prefHeight="342.0" prefWidth="383.0" style="-fx-background-color: grey;" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="277.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" text="Save 1" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="Save1" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="275.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="386.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" text="Save 2" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="Save2" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="350.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="139.0" layoutY="492.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" text="Save 3" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="Save3" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="425.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+        <Button fx:id="BackB" layoutX="14.0" layoutY="624.0" mnemonicParsing="false" onAction="#BackButtonAction" prefHeight="25.0" prefWidth="165.0" style="-fx-shape: &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot; &quot;M120, 0 L0, 0  L-10, -10 L0,-20 L120, -20  Z&quot;; -fx-background-color: #000000;" text="Back" textFill="WHITE">
+            <font>
+                <Font name="Ayuthaya" size="24.0" />
+            </font>
+        </Button>
+      <Label fx:id="Save4" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="500.0" prefHeight="63.0" prefWidth="175.0" style="-fx-background-color: #272727;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

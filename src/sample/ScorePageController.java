@@ -6,11 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -67,22 +65,20 @@ public class ScorePageController {
     @FXML private Button HomeBu;
     public void homeButtonAction(ActionEvent m) throws IOException {
         // Done IG
-        Stage s=(Stage)HomeBu.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.load(root);
+        Main.removeFront();
     }
 
     // For New Game Button
     public void newGameButtonAction(ActionEvent a) throws IOException {
         // Start New Game
-        Stage s=(Stage)NewGameBu.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.load(root);
+        Main.removeFront();
     }
 
-
     public void NewLifeButtonAction(ActionEvent a) {
+        Main.back();
     }
 }
