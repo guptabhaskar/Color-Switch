@@ -24,10 +24,8 @@ public class MainPageController {
     @FXML private Button PlayB;
     public void startNewGameAction(ActionEvent a) throws IOException {
         // Start New Game
-        Stage s=(Stage)PlayB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.Player.load(root);
     }
 
     // Hover Effect for Buttons
@@ -60,19 +58,15 @@ public class MainPageController {
     @FXML private Button SaveB;
     public void ShowSavedGameAction(ActionEvent a) throws IOException {
         // Show Saved Games
-        System.out.println("Show Saved Games");
-        Stage s=(Stage)SaveB.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("LoadGamePage.fxml"));
-        s.setScene(new Scene(root, 450, 700));
-        s.show();
+        Main.Player.load(root);
     }
 
     // For Exit Button
     @FXML private Button ExitB;
     public void ExitGameAction(ActionEvent a) {
         // Done IG
-        Stage s=(Stage)ExitB.getScene().getWindow();
-        s.close();
+        Main.Player.close();
     }
 
     // For Rotating Groups

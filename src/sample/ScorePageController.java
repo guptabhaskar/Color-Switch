@@ -82,6 +82,7 @@ public class ScorePageController {
         s.show();
     }
 
+
     public void NewLifeButtonAction(ActionEvent a) {
     }
 }

@@ -19,6 +19,7 @@ public class TryController {
     @FXML private Group Eight2;
     @FXML private Group Concentric1;
     @FXML private Group Concentric2;
+    @FXML private Group NormalCircle;
     @FXML private Group Plus1;
     @FXML private Group Plus2;
     @FXML private SVGPath Star;
@@ -62,6 +63,11 @@ public class TryController {
             RPlus2.setPivotX(64);
             RPlus2.setPivotY(0);
             Plus2.getTransforms().add(RPlus1);
+            Rotate NormalC = new Rotate();
+            NormalC.setAngle(-0.8);
+            NormalC.setPivotX(241);
+            NormalC.setPivotY(297);
+            NormalCircle.getTransforms().add(NormalC);
             Star.setScaleX(Star.getScaleX()+diff);
             Star.setScaleY(Star.getScaleY()+diff);
             if(Star.getScaleX()>=2.5) {
