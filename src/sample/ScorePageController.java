@@ -30,6 +30,7 @@ public class ScorePageController {
     private double diff=0.025;
     private double diffB=0.004;
     AnimationTimer RotateT = new Timer();
+
     private class Timer extends AnimationTimer{
         @Override
         public void handle(long time){
@@ -79,5 +80,8 @@ public class ScorePageController {
         Parent root = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
         s.setScene(new Scene(root, 450, 700));
         s.show();
+    }
+
+    public void NewLifeButtonAction(ActionEvent a) {
     }
 }
