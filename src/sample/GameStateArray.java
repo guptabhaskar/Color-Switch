@@ -3,6 +3,7 @@ package sample;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+// State Design Pattern
 public class GameStateArray implements Serializable {
     private int totalScore;
     private ArrayList<GameState> GameStates = new ArrayList<>();

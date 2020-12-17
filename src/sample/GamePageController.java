@@ -156,6 +156,7 @@ public class GamePageController implements Initializable {
 
     @FXML Label ScoreL;
     private void checkCollision() throws Exception {
+        // Iterator Design Pattern
         for(Common s: StarsOnScreen) {
             if(s.hit(MainBall)){
                 URL path = getClass().getResource("/assets/star.wav");
