@@ -24,7 +24,7 @@ public class MainPageController {
     @FXML private Button PlayB;
     public void startNewGameAction(ActionEvent a) throws IOException {
         // Start New Game
-        Parent root = FXMLLoader.load(getClass().getResource("GameLoadedPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GameLoaded.fxml"));
         Main.Player.load(root);
     }
 
