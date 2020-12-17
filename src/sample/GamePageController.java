@@ -86,16 +86,11 @@ public class GamePageController implements Initializable {
     }
 
     private void addRandomObstacle(double y) throws IOException {
-        ArrayList<Common> chooseOne = new ArrayList<>();
-        chooseOne.add(new Rectangle());
-        chooseOne.add(new Concentric());
-        chooseOne.add(new Eight());
-        chooseOne.add(new Plus());
-        chooseOne.add(new NormalCircle());
-//        chooseOne.add(new Bolt());
+        // Factory Design Pattern
+        GetObstacle GO = new GetObstacle();
         Random r = new Random();
         int c = r.nextInt(5);
-        Common o = chooseOne.get(c);
+        Common o = GO.getObstacle(c);
         if(o instanceof Rectangle) {
             ((Rectangle) o).getG().setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).getG());
@@ -125,10 +120,6 @@ public class GamePageController implements Initializable {
             addStar(y);
             addColorSwitcher(y - 200);
         }
-//        } else if(o instanceof Bolt) {
-//            ((Bolt) o).getG().setLayoutY(y);
-//            GameScreen.getChildren().addAll(((Bolt) o).getG());
-//        }
         ObstaclesOnScreen.add(o);
     }
 
