@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.scene.paint.Paint;
+
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
