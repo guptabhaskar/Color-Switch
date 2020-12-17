@@ -9,7 +9,8 @@ import javafx.scene.shape.Shape;
 import java.io.IOException;
 
 public class Star extends Effects {
-    SVGPath G;
+    private SVGPath G;
+
     public Star() throws IOException {
         AnchorPane Obstacles = FXMLLoader.load(getClass().getResource("Try.fxml"));
         for(Node node:Obstacles.getChildren()) {
@@ -20,9 +21,17 @@ public class Star extends Effects {
         }
     }
 
+    public SVGPath getG() {
+        return G;
+    }
+
+    public void setG(SVGPath g) {
+        G = g;
+    }
+
     @Override
     public boolean hit(Ball MainBall) {
-        if(!Shape.intersect(G, MainBall.C).getBoundsInLocal().isEmpty()){
+        if(!Shape.intersect(G, MainBall.getC()).getBoundsInLocal().isEmpty()){
             return true;
         }
         return false;

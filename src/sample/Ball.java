@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -9,7 +8,8 @@ import javafx.scene.shape.Circle;
 import java.io.IOException;
 
 public class Ball {
-    Circle C;
+    private Circle C;
+
     public Ball(){
         AnchorPane Obstacles = null;
         try {
@@ -23,5 +23,13 @@ public class Ball {
                 break;
             }
         }
+    }
+
+    public Circle getC() {
+        return C;
+    }
+
+    public void setC(Circle c) {
+        C = c;
     }
 }

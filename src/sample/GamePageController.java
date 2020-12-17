@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -39,20 +38,20 @@ public class GamePageController implements Initializable {
         URL path = getClass().getResource("/assets/start.wav");
         AudioClip ac = new AudioClip(path.toString());
         ac.play();
-        MainBall.C.setLayoutY(650);
-        GameScreen.getChildren().add(MainBall.C);
+        MainBall.getC().setLayoutY(650);
+        GameScreen.getChildren().add(MainBall.getC());
         try {
             addRandomObstacle(300);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            addRandomObstacle(-200);
+            addRandomObstacle(-50);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            addRandomObstacle(-700);
+            addRandomObstacle(-400);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,14 +59,14 @@ public class GamePageController implements Initializable {
     }
     private void addStar(double y) throws IOException {
         Star s = new Star();
-        s.G.setLayoutY(y);
-        GameScreen.getChildren().addAll(s.G);
+        s.getG().setLayoutY(y);
+        GameScreen.getChildren().addAll(s.getG());
         StarsOnScreen.add(s);
     }
     private void addColorSwitcher(double y) throws IOException {
         ColorSwitcher cs = new ColorSwitcher();
-        cs.G.setLayoutY(y);
-        GameScreen.getChildren().addAll(cs.G);
+        cs.getG().setLayoutY(y);
+        GameScreen.getChildren().addAll(cs.getG());
         ColorSwitcherOnScreen.add(cs);
     }
 
@@ -81,26 +80,26 @@ public class GamePageController implements Initializable {
         int c = r.nextInt(4);
         Obstacle o = chooseOne.get(c);
         if(o instanceof Rectangle){
-            ((Rectangle) o).G.setLayoutY(y);
-            GameScreen.getChildren().addAll(((Rectangle) o).G);
+            ((Rectangle) o).getG().setLayoutY(y);
+            GameScreen.getChildren().addAll(((Rectangle) o).getG());
             addStar(y);
             addColorSwitcher(y-150);
         } else if(o instanceof Eight){
-            ((Eight) o).G1.setLayoutY(y-300);
-            ((Eight) o).G2.setLayoutY(y-300);
-            GameScreen.getChildren().addAll(((Eight) o).G1, ((Eight) o).G2);
+            ((Eight) o).getG1().setLayoutY(y-300);
+            ((Eight) o).getG2().setLayoutY(y-300);
+            GameScreen.getChildren().addAll(((Eight) o).getG1(), ((Eight) o).getG2());
             addStar(y-100);
             addColorSwitcher(y-200);
         } else if(o instanceof Plus){
-            ((Plus) o).G1.setLayoutY(y);
-            ((Plus) o).G2.setLayoutY(y);
-            GameScreen.getChildren().addAll(((Plus) o).G1, ((Plus) o).G2);
+            ((Plus) o).getG1().setLayoutY(y);
+            ((Plus) o).getG2().setLayoutY(y);
+            GameScreen.getChildren().addAll(((Plus) o).getG1(), ((Plus) o).getG2());
             addStar(y-70);
             addColorSwitcher(y-140);
         } else if(o instanceof Concentric){
-            ((Concentric) o).G1.setLayoutY(y-300);
-            ((Concentric) o).G2.setLayoutY(y-300);
-            GameScreen.getChildren().addAll(((Concentric) o).G1, ((Concentric) o).G2);
+            ((Concentric) o).getG1().setLayoutY(y-300);
+            ((Concentric) o).getG2().setLayoutY(y-300);
+            GameScreen.getChildren().addAll(((Concentric) o).getG1(), ((Concentric) o).getG2());
             addStar(y);
             addColorSwitcher(y-200);
         }
@@ -111,7 +110,7 @@ public class GamePageController implements Initializable {
         @Override
         public void handle(long time){
             gravity();
-            if(MainBall.C.getBoundsInParent().getMinY()<450){
+            if(MainBall.getC().getBoundsInParent().getMinY()<450){
                 try {
                     moveScreenDown();
                 } catch (IOException e) {
@@ -123,7 +122,7 @@ public class GamePageController implements Initializable {
                 getRandomColorOnBall();
                 BallColor=true;
             }
-            MainBall.C.toFront();
+            MainBall.getC().toFront();
             PauseB.toFront();
             ScoreL.toFront();
             try {
@@ -142,7 +141,7 @@ public class GamePageController implements Initializable {
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
                 ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 1));
-                GameScreen.getChildren().remove(s.G);
+                GameScreen.getChildren().remove(s.getG());
                 StarsOnScreen.remove(0);
                 break;
             }
@@ -153,7 +152,7 @@ public class GamePageController implements Initializable {
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
                 getRandomColorOnBall();
-                GameScreen.getChildren().remove(cs.G);
+                GameScreen.getChildren().remove(cs.getG());
                 ColorSwitcherOnScreen.remove(0);
                 break;
             }
@@ -183,7 +182,7 @@ public class GamePageController implements Initializable {
         allcolors.add("#32dbf0");
         Random rand = new Random();
         int c = rand.nextInt(4);
-        MainBall.C.setFill(Paint.valueOf(allcolors.get(c)));
+        MainBall.getC().setFill(Paint.valueOf(allcolors.get(c)));
     }
 
     public void moveScreenDown() throws IOException {
@@ -191,48 +190,48 @@ public class GamePageController implements Initializable {
         boolean toAdd=false;
         for(Obstacle o: ObstaclesOnScreen){
             if(o instanceof Rectangle){
-                ((Rectangle) o).G.setTranslateY(((Rectangle) o).G.getTranslateY()+g);
-                if(((Rectangle) o).G.getBoundsInParent().getMinY()>700) {
+                ((Rectangle) o).getG().setTranslateY(((Rectangle) o).getG().getTranslateY()+g);
+                if(((Rectangle) o).getG().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
-                    GameScreen.getChildren().removeAll(((Rectangle) o).G);
+                    GameScreen.getChildren().removeAll(((Rectangle) o).getG());
                 }
             }
             if(o instanceof Eight){
-                ((Eight) o).G1.setTranslateY(((Eight) o).G1.getTranslateY()+g);
-                ((Eight) o).G2.setTranslateY(((Eight) o).G2.getTranslateY()+g);
-                if(((Eight) o).G1.getBoundsInParent().getMinY()>700) {
+                ((Eight) o).getG1().setTranslateY(((Eight) o).getG1().getTranslateY()+g);
+                ((Eight) o).getG2().setTranslateY(((Eight) o).getG2().getTranslateY()+g);
+                if(((Eight) o).getG1().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
-                    GameScreen.getChildren().removeAll(((Eight) o).G1);
-                    GameScreen.getChildren().removeAll(((Eight) o).G2);
+                    GameScreen.getChildren().removeAll(((Eight) o).getG1());
+                    GameScreen.getChildren().removeAll(((Eight) o).getG2());
                 }
             }
             if(o instanceof Plus){
-                ((Plus) o).G1.setTranslateY(((Plus) o).G1.getTranslateY()+g);
-                ((Plus) o).G2.setTranslateY(((Plus) o).G2.getTranslateY()+g);
-                if(((Plus) o).G1.getBoundsInParent().getMinY()>700) {
+                ((Plus) o).getG1().setTranslateY(((Plus) o).getG1().getTranslateY()+g);
+                ((Plus) o).getG2().setTranslateY(((Plus) o).getG2().getTranslateY()+g);
+                if(((Plus) o).getG1().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
-                    GameScreen.getChildren().removeAll(((Plus) o).G1);
-                    GameScreen.getChildren().removeAll(((Plus) o).G2);
+                    GameScreen.getChildren().removeAll(((Plus) o).getG1());
+                    GameScreen.getChildren().removeAll(((Plus) o).getG2());
                 }
             }
             if(o instanceof Concentric){
-                ((Concentric) o).G1.setTranslateY(((Concentric) o).G1.getTranslateY()+g);
-                ((Concentric) o).G2.setTranslateY(((Concentric) o).G2.getTranslateY()+g);
-                if(((Concentric) o).G1.getBoundsInParent().getMinY()>700) {
+                ((Concentric) o).getG1().setTranslateY(((Concentric) o).getG1().getTranslateY()+g);
+                ((Concentric) o).getG2().setTranslateY(((Concentric) o).getG2().getTranslateY()+g);
+                if(((Concentric) o).getG1().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
-                    GameScreen.getChildren().removeAll(((Concentric) o).G1);
-                    GameScreen.getChildren().removeAll(((Concentric) o).G2);
+                    GameScreen.getChildren().removeAll(((Concentric) o).getG1());
+                    GameScreen.getChildren().removeAll(((Concentric) o).getG2());
                 }
             }
         }
         for(Star s1: StarsOnScreen) {
-            s1.G.setTranslateY(s1.G.getTranslateY()+g);
+            s1.getG().setTranslateY(s1.getG().getTranslateY()+g);
         }
         for(ColorSwitcher cs1: ColorSwitcherOnScreen) {
-            cs1.G.setTranslateY(cs1.G.getTranslateY()+g);
+            cs1.getG().setTranslateY(cs1.getG().getTranslateY()+g);
         }
         if(toAdd){
-            addRandomObstacle(-700);
+            addRandomObstacle(-400);
             ObstaclesOnScreen.remove(0);
         }
     }
@@ -252,7 +251,7 @@ public class GamePageController implements Initializable {
     TranslateTransition BallAnim =new TranslateTransition();
     public void gravity(){
         if(!f) {
-            MainBall.C.setTranslateY(MainBall.C.getTranslateY() + consta);
+            MainBall.getC().setTranslateY(MainBall.getC().getTranslateY() + consta);
             consta += differ;
         }
     }
@@ -264,9 +263,9 @@ public class GamePageController implements Initializable {
         consta=1;
         f=false;
         BallAnim.setDuration(Duration.millis(100));
-        BallAnim.setNode(MainBall.C);
-        if(MainBall.C.getBoundsInParent().getMinY()>100){
-            BallAnim.setToY(MainBall.C.getTranslateY() - 50);
+        BallAnim.setNode(MainBall.getC());
+        if(MainBall.getC().getBoundsInParent().getMinY()>100){
+            BallAnim.setToY(MainBall.getC().getTranslateY() - 50);
             BallAnim.play();
         } else {
             BallAnim.pause();

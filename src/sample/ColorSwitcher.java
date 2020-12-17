@@ -9,7 +9,8 @@ import javafx.scene.shape.Shape;
 import java.io.IOException;
 
 public class ColorSwitcher extends Effects {
-    Group G;
+    private Group G;
+
     public ColorSwitcher() throws IOException {
         AnchorPane Obstacles = FXMLLoader.load(getClass().getResource("Try.fxml"));
         for(Node node:Obstacles.getChildren()) {
@@ -20,10 +21,18 @@ public class ColorSwitcher extends Effects {
         }
     }
 
+    public Group getG() {
+        return G;
+    }
+
+    public void setG(Group g) {
+        G = g;
+    }
+
     @Override
     public boolean hit(Ball MainBall) {
         for(Node n : G.getChildren()){
-            if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
+            if(!Shape.intersect((Shape) n, MainBall.getC()).getBoundsInLocal().isEmpty()){
                 return true;
             }
         }

@@ -9,7 +9,8 @@ import javafx.scene.shape.Shape;
 import java.io.IOException;
 
 public class Rectangle extends Obstacle{
-    Group G;
+    private Group G;
+
     public Rectangle(){
         AnchorPane Obstacles = null;
         try {
@@ -25,11 +26,19 @@ public class Rectangle extends Obstacle{
         }
     }
 
+    public Group getG() {
+        return G;
+    }
+
+    public void setG(Group g) {
+        G = g;
+    }
+
     @Override
     public boolean hit(Ball MainBall) {
         for(Node n: G.getChildren()){
-            if(!Shape.intersect((Shape) n, MainBall.C).getBoundsInLocal().isEmpty()){
-                if(!((Shape) n).getStroke().equals(MainBall.C.getFill())){
+            if(!Shape.intersect((Shape) n, MainBall.getC()).getBoundsInLocal().isEmpty()){
+                if(!((Shape) n).getStroke().equals(MainBall.getC().getFill())){
                     return true;
                 } else {
                     return false;
