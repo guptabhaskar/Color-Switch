@@ -29,9 +29,9 @@ public class GamePageController implements Initializable {
 
     boolean BallColor=false; // To check if ball has random color or not in start
     AnimationTimer AnimationTi = new Timer();
-    ArrayList<Obstacle> ObstaclesOnScreen = new ArrayList<>();
-    ArrayList<Star> StarsOnScreen = new ArrayList<>();
-    ArrayList<ColorSwitcher> ColorSwitcherOnScreen = new ArrayList<>();
+    ArrayList<Common> ObstaclesOnScreen = new ArrayList<>();
+    ArrayList<Common> StarsOnScreen = new ArrayList<>();
+    ArrayList<Common> ColorSwitcherOnScreen = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -135,29 +135,29 @@ public class GamePageController implements Initializable {
 
     @FXML Label ScoreL;
     private void checkCollision() throws IOException {
-        for(Star s: StarsOnScreen) {
+        for(Common s: StarsOnScreen) {
             if(s.hit(MainBall)){
                 URL path = getClass().getResource("/assets/star.wav");
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
                 ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 1));
-                GameScreen.getChildren().remove(s.getG());
+                GameScreen.getChildren().remove(((Star)s).getG());
                 StarsOnScreen.remove(0);
                 break;
             }
         }
-        for(ColorSwitcher  cs: ColorSwitcherOnScreen) {
+        for(Common  cs: ColorSwitcherOnScreen) {
             if(cs.hit(MainBall)) {
                 URL path = getClass().getResource("/assets/colorswitch.wav");
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
                 getRandomColorOnBall();
-                GameScreen.getChildren().remove(cs.getG());
+                GameScreen.getChildren().remove(((ColorSwitcher) cs).getG());
                 ColorSwitcherOnScreen.remove(0);
                 break;
             }
         }
-        for(Obstacle o: ObstaclesOnScreen) {
+        for(Common o: ObstaclesOnScreen) {
             if(o.hit(MainBall)) {
                 goToScorePage();
                 break;
@@ -188,7 +188,7 @@ public class GamePageController implements Initializable {
     public void moveScreenDown() throws IOException {
         double g=1;
         boolean toAdd=false;
-        for(Obstacle o: ObstaclesOnScreen){
+        for(Common o: ObstaclesOnScreen){
             if(o instanceof Rectangle){
                 ((Rectangle) o).getG().setTranslateY(((Rectangle) o).getG().getTranslateY()+g);
                 if(((Rectangle) o).getG().getBoundsInParent().getMinY()>700) {
@@ -224,11 +224,11 @@ public class GamePageController implements Initializable {
                 }
             }
         }
-        for(Star s1: StarsOnScreen) {
-            s1.getG().setTranslateY(s1.getG().getTranslateY()+g);
+        for(Common s1: StarsOnScreen) {
+            ((Star)s1).getG().setTranslateY(((Star)s1).getG().getTranslateY()+g);
         }
-        for(ColorSwitcher cs1: ColorSwitcherOnScreen) {
-            cs1.getG().setTranslateY(cs1.getG().getTranslateY()+g);
+        for(Common cs1: ColorSwitcherOnScreen) {
+            ((ColorSwitcher)cs1).getG().setTranslateY(((ColorSwitcher)cs1).getG().getTranslateY()+g);
         }
         if(toAdd){
             addRandomObstacle(-400);
