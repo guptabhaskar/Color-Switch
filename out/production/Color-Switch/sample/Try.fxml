@@ -75,7 +75,7 @@
             <SVGPath content="M 100 300 Q 100 100 300 100 L 300 150 Q 150 150 150 300 L 100 300M 100 300 Q 100 100 300 100 L 300 150 Q 150 150 150 300 L 100 300" fill="#32dbf0" layoutX="-60.0" layoutY="8.0" />
          </children>
       </Group>
-      <Group fx:id="NormalCircle" layoutX="6.0" layoutY="300.0" scaleX="0.5" scaleY="0.5">
+      <Group fx:id="NormalCircle" layoutX="6.0" layoutY="900.0" scaleX="0.5" scaleY="0.5">
          <children>
             <SVGPath content="M 100 300 Q 100 100 300 100 L 300 150 Q 150 150 150 300 L 100 300M 100 300 Q 100 100 300 100 L 300 150 Q 150 150 150 300 L 100 300" fill="#ff0181" layoutX="140.0" layoutY="193.0" rotate="180.0" />
             <SVGPath content="M 100 300 Q 100 100 300 100 L 300 150 Q 150 150 150 300 L 100 300M 100 300 Q 100 100 300 100 L 300 150 Q 150 150 150 300 L 100 300" fill="#32dbf0" layoutX="140.0" layoutY="8.0" rotate="90.0" />
