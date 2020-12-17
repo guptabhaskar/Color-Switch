@@ -23,7 +23,7 @@ public class GameState implements Serializable {
     }
 
     public void setObstacle(ArrayList<ObstacleState> obstacle) {
-        this.obstacles = obstacles;
+        this.obstacles = obstacle;
     }
 
     public void addObstacle(ObstacleState o) {
