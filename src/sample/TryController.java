@@ -23,7 +23,9 @@ public class TryController {
     @FXML private Group Plus1;
     @FXML private Group Plus2;
     @FXML private SVGPath Star;
+    @FXML private SVGPath Bolt;
     private double diff=0.01;
+    private double diff1=0.0007;
     AnimationTimer RotateT = new Timer();
     private class Timer extends AnimationTimer{
         @Override
@@ -74,6 +76,13 @@ public class TryController {
                 diff *= -1;
             } else if(Star.getScaleX()<=2.0) {
                 diff *= -1;
+            }
+            Bolt.setScaleX(Bolt.getScaleX()+diff1);
+            Bolt.setScaleY(Bolt.getScaleY()+diff1);
+            if(Bolt.getScaleX()>=0.11) {
+                diff1 *= -1;
+            } else if(Bolt.getScaleX()<=0.09) {
+                diff1 *= -1;
             }
         }
     }

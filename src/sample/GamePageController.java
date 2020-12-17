@@ -7,14 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.*;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.*;
@@ -88,15 +86,16 @@ public class GamePageController implements Initializable {
     }
 
     private void addRandomObstacle(double y) throws IOException {
-        ArrayList<Obstacle> chooseOne = new ArrayList<>();
+        ArrayList<Common> chooseOne = new ArrayList<>();
         chooseOne.add(new Rectangle());
         chooseOne.add(new Concentric());
         chooseOne.add(new Eight());
         chooseOne.add(new Plus());
         chooseOne.add(new NormalCircle());
+//        chooseOne.add(new Bolt());
         Random r = new Random();
         int c = r.nextInt(5);
-        Obstacle o = chooseOne.get(c);
+        Common o = chooseOne.get(c);
         if(o instanceof Rectangle) {
             ((Rectangle) o).getG().setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).getG());
@@ -121,14 +120,20 @@ public class GamePageController implements Initializable {
             addStar(y);
             addColorSwitcher(y-200);
         } else if(o instanceof NormalCircle) {
-            ((NormalCircle) o).getG().setLayoutY(y-300);
+            ((NormalCircle) o).getG().setLayoutY(y - 300);
             GameScreen.getChildren().addAll(((NormalCircle) o).getG());
             addStar(y);
-            addColorSwitcher(y-200);
+            addColorSwitcher(y - 200);
         }
+//        } else if(o instanceof Bolt) {
+//            ((Bolt) o).getG().setLayoutY(y);
+//            GameScreen.getChildren().addAll(((Bolt) o).getG());
+//        }
         ObstaclesOnScreen.add(o);
     }
 
+    private boolean power = false;
+    private int currScorePower;
     private class Timer extends AnimationTimer  {
         @Override
         public void handle(long time){
