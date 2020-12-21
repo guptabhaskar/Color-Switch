@@ -167,6 +167,9 @@ public class GamePageController implements Initializable {
         // Iterator Design Pattern
         for(Common s: StarsOnScreen) {
             if(s.hit(MainBall)){
+                if(power){
+                    ctr+=1;
+                }
                 URL path = getClass().getResource("/assets/star.wav");
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
@@ -192,8 +195,9 @@ public class GamePageController implements Initializable {
                 URL path = getClass().getResource("/assets/colorswitch.wav");
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
-                power=true;
+                power = true;
                 GameScreen.getChildren().remove(((Bolt) cs).getG());
+                ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 3));
                 BoltsOnScreen.remove(0);
                 break;
             }
@@ -243,9 +247,6 @@ public class GamePageController implements Initializable {
         boolean toAdd=false;
         for(Common o: ObstaclesOnScreen){
             if(o instanceof Rectangle){
-                if(power){
-                    ctr+=1;
-                }
                 ((Rectangle) o).getG().setTranslateY(((Rectangle) o).getG().getTranslateY()+g);
                 if(((Rectangle) o).getG().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
@@ -253,9 +254,6 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Eight){
-                if(power){
-                    ctr+=1;
-                }
                 ((Eight) o).getG1().setTranslateY(((Eight) o).getG1().getTranslateY()+g);
                 ((Eight) o).getG2().setTranslateY(((Eight) o).getG2().getTranslateY()+g);
                 if(((Eight) o).getG1().getBoundsInParent().getMinY()>700) {
@@ -265,9 +263,6 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Plus){
-                if(power){
-                    ctr+=1;
-                }
                 ((Plus) o).getG1().setTranslateY(((Plus) o).getG1().getTranslateY()+g);
                 ((Plus) o).getG2().setTranslateY(((Plus) o).getG2().getTranslateY()+g);
                 if(((Plus) o).getG1().getBoundsInParent().getMinY()>700) {
@@ -277,9 +272,6 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Concentric){
-                if(power){
-                    ctr+=1;
-                }
                 ((Concentric) o).getG1().setTranslateY(((Concentric) o).getG1().getTranslateY()+g);
                 ((Concentric) o).getG2().setTranslateY(((Concentric) o).getG2().getTranslateY()+g);
                 if(((Concentric) o).getG1().getBoundsInParent().getMinY()>700) {
@@ -289,9 +281,6 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof NormalCircle){
-                if(power){
-                    ctr+=1;
-                }
                 ((NormalCircle) o).getG().setTranslateY(((NormalCircle) o).getG().getTranslateY()+g);
                 if(((NormalCircle) o).getG().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
