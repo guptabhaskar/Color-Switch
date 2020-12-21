@@ -103,7 +103,7 @@ public class GamePageController implements Initializable {
         if(o instanceof Rectangle) {
             ((Rectangle) o).getG().setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).getG());
-            addBolt(y);
+            addStar(y);
             addColorSwitcher(y-150);
         } else if(o instanceof Eight) {
             ((Eight) o).getG1().setLayoutY(y-300);
@@ -126,8 +126,7 @@ public class GamePageController implements Initializable {
         } else if(o instanceof NormalCircle) {
             ((NormalCircle) o).getG().setLayoutY(y - 300);
             GameScreen.getChildren().addAll(((NormalCircle) o).getG());
-            addBolt(y);
-            addColorSwitcher(y - 200);
+            addBolt(y-25);
         }
 
         ObstaclesOnScreen.add(o);
