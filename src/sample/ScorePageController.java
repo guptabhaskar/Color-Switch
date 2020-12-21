@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Rotate;
 
@@ -26,9 +27,15 @@ public class ScorePageController implements Initializable {
     @FXML private SVGPath S33;
     @FXML private Button NewGameBu;
     @FXML private Label CurrSc;
+    @FXML private Label TotalStars;
+    @FXML private Button NewLife;
+    @FXML private AnchorPane Screen;
 
     public void update(int n) {
         CurrSc.setText(String.valueOf(n));
+        if(Integer.parseInt(TotalStars.getText())<30) {
+            Screen.getChildren().remove(NewLife);
+        }
     }
 
     private double diff=0.025;
@@ -90,6 +97,7 @@ public class ScorePageController implements Initializable {
     }
 
     public void NewLifeButtonAction(MouseEvent a) throws IOException {
+        TotalStars.setText(String.valueOf(Integer.parseInt(TotalStars.getText())-30));
         Main.back();
     }
 }
