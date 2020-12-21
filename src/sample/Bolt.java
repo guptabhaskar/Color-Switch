@@ -8,7 +8,7 @@ import javafx.scene.shape.Shape;
 
 import java.io.IOException;
 
-public class Bolt extends Obstacle{
+public class Bolt extends Effects {
     private SVGPath G;
 
     public Bolt() throws IOException {
