@@ -140,7 +140,7 @@ public class GamePageController implements Initializable {
                 gravity();
                 if (MainBall.getC().getBoundsInParent().getMinY() < 450) {
                     try {
-                        moveScreenDown(1);
+                        moveScreenDown(1.4);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
