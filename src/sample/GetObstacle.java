@@ -1,8 +1,10 @@
 package sample;
 
+import java.io.IOException;
+
 // Factory Design Pattern
 public class GetObstacle {
-    public Obstacle getObstacle(int i){
+    public Obstacle getObstacle(int i) {
         if(i == 0){
             return new Rectangle();
         }
