@@ -86,7 +86,6 @@ public class GamePageController implements Initializable {
         BoltsOnScreen.add(s);
     }
 
-
     private void addColorSwitcher(double y) throws IOException {
         ColorSwitcher cs = new ColorSwitcher();
         cs.getG().setLayoutY(y);
@@ -103,7 +102,7 @@ public class GamePageController implements Initializable {
         if(o instanceof Rectangle) {
             ((Rectangle) o).getG().setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).getG());
-            addBolt(y);
+            addStar(y);
             addColorSwitcher(y-150);
         } else if(o instanceof Eight) {
             ((Eight) o).getG1().setLayoutY(y-300);
@@ -126,22 +125,20 @@ public class GamePageController implements Initializable {
         } else if(o instanceof NormalCircle) {
             ((NormalCircle) o).getG().setLayoutY(y - 300);
             GameScreen.getChildren().addAll(((NormalCircle) o).getG());
-            addBolt(y);
+            addBolt(y - 200);
             addColorSwitcher(y - 200);
         }
-
         ObstaclesOnScreen.add(o);
     }
 
     private boolean power = false;
     private int ctr=0;
-    private int currScorePower;
     private class Timer extends AnimationTimer  {
         @Override
         public void handle(long time){
             if(pause()) {
                 gravity();
-                if (MainBall.getC().getBoundsInParent().getMinY() < 300) {
+                if (MainBall.getC().getBoundsInParent().getMinY() < 450) {
                     try {
                         moveScreenDown(1);
                     } catch (IOException e) {
@@ -202,7 +199,7 @@ public class GamePageController implements Initializable {
             }
         }
         for(Common o: ObstaclesOnScreen) {
-            if(o.hit(MainBall) && power==false) {
+            if(o.hit(MainBall) && !power) {
                 goToScorePage();
                 break;
             }
@@ -217,8 +214,6 @@ public class GamePageController implements Initializable {
         // Just for now
         System.out.println("Dead");
         MainBall.getC().setLayoutY(MainBall.getC().getLayoutY()-50);
-        FXMLLoader f = new FXMLLoader();
-//        f.load()
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -248,7 +243,7 @@ public class GamePageController implements Initializable {
         boolean toAdd=false;
         for(Common o: ObstaclesOnScreen){
             if(o instanceof Rectangle){
-                if(power==true){
+                if(power){
                     ctr+=1;
                 }
                 ((Rectangle) o).getG().setTranslateY(((Rectangle) o).getG().getTranslateY()+g);
@@ -258,7 +253,7 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Eight){
-                if(power==true){
+                if(power){
                     ctr+=1;
                 }
                 ((Eight) o).getG1().setTranslateY(((Eight) o).getG1().getTranslateY()+g);
@@ -270,7 +265,7 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Plus){
-                if(power==true){
+                if(power){
                     ctr+=1;
                 }
                 ((Plus) o).getG1().setTranslateY(((Plus) o).getG1().getTranslateY()+g);
@@ -282,7 +277,7 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Concentric){
-                if(power==true){
+                if(power){
                     ctr+=1;
                 }
                 ((Concentric) o).getG1().setTranslateY(((Concentric) o).getG1().getTranslateY()+g);
@@ -294,7 +289,7 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof NormalCircle){
-                if(power==true){
+                if(power){
                     ctr+=1;
                 }
                 ((NormalCircle) o).getG().setTranslateY(((NormalCircle) o).getG().getTranslateY()+g);
