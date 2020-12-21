@@ -158,6 +158,13 @@ public class GamePageController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                if((MainBall.getC().getBoundsInParent().getMinY()>700)) {
+                    try {
+                        goToScorePage();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
