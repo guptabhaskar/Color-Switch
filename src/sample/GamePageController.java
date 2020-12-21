@@ -45,6 +45,7 @@ public class GamePageController implements Initializable {
     AnimationTimer AnimationTi = new Timer();
     ArrayList<Common> ObstaclesOnScreen = new ArrayList<>();
     ArrayList<Common> StarsOnScreen = new ArrayList<>();
+    ArrayList<Common> BoltsOnScreen = new ArrayList<>();
     ArrayList<Common> ColorSwitcherOnScreen = new ArrayList<>();
 
     @Override
@@ -78,6 +79,13 @@ public class GamePageController implements Initializable {
         GameScreen.getChildren().addAll(s.getG());
         StarsOnScreen.add(s);
     }
+    private void addBolt(double y) throws IOException {
+        Bolt s = new Bolt();
+        s.getG().setLayoutY(y);
+        GameScreen.getChildren().addAll(s.getG());
+        BoltsOnScreen.add(s);
+    }
+
 
     private void addColorSwitcher(double y) throws IOException {
         ColorSwitcher cs = new ColorSwitcher();
@@ -95,7 +103,7 @@ public class GamePageController implements Initializable {
         if(o instanceof Rectangle) {
             ((Rectangle) o).getG().setLayoutY(y);
             GameScreen.getChildren().addAll(((Rectangle) o).getG());
-            addStar(y);
+            addBolt(y);
             addColorSwitcher(y-150);
         } else if(o instanceof Eight) {
             ((Eight) o).getG1().setLayoutY(y-300);
@@ -118,13 +126,15 @@ public class GamePageController implements Initializable {
         } else if(o instanceof NormalCircle) {
             ((NormalCircle) o).getG().setLayoutY(y - 300);
             GameScreen.getChildren().addAll(((NormalCircle) o).getG());
-            addStar(y);
+            addBolt(y);
             addColorSwitcher(y - 200);
         }
+
         ObstaclesOnScreen.add(o);
     }
 
     private boolean power = false;
+    private int ctr=0;
     private int currScorePower;
     private class Timer extends AnimationTimer  {
         @Override
@@ -133,7 +143,7 @@ public class GamePageController implements Initializable {
                 gravity();
                 if (MainBall.getC().getBoundsInParent().getMinY() < 300) {
                     try {
-                        moveScreenDown();
+                        moveScreenDown(1);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -180,8 +190,19 @@ public class GamePageController implements Initializable {
                 break;
             }
         }
+        for(Common  cs: BoltsOnScreen) {
+            if(cs.hit(MainBall)) {
+                URL path = getClass().getResource("/assets/colorswitch.wav");
+                AudioClip ac = new AudioClip(path.toString());
+                ac.play();
+                power=true;
+                GameScreen.getChildren().remove(((Bolt) cs).getG());
+                BoltsOnScreen.remove(0);
+                break;
+            }
+        }
         for(Common o: ObstaclesOnScreen) {
-            if(o.hit(MainBall)) {
+            if(o.hit(MainBall) && power==false) {
                 goToScorePage();
                 break;
             }
@@ -222,11 +243,14 @@ public class GamePageController implements Initializable {
         MainBall.getC().setFill(Paint.valueOf(allcolors.get(c)));
     }
 
-    public void moveScreenDown() throws IOException {
-        double g=1;
+    public void moveScreenDown(double speed) throws IOException {
+        double g=speed;
         boolean toAdd=false;
         for(Common o: ObstaclesOnScreen){
             if(o instanceof Rectangle){
+                if(power==true){
+                    ctr+=1;
+                }
                 ((Rectangle) o).getG().setTranslateY(((Rectangle) o).getG().getTranslateY()+g);
                 if(((Rectangle) o).getG().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
@@ -234,6 +258,9 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Eight){
+                if(power==true){
+                    ctr+=1;
+                }
                 ((Eight) o).getG1().setTranslateY(((Eight) o).getG1().getTranslateY()+g);
                 ((Eight) o).getG2().setTranslateY(((Eight) o).getG2().getTranslateY()+g);
                 if(((Eight) o).getG1().getBoundsInParent().getMinY()>700) {
@@ -243,6 +270,9 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Plus){
+                if(power==true){
+                    ctr+=1;
+                }
                 ((Plus) o).getG1().setTranslateY(((Plus) o).getG1().getTranslateY()+g);
                 ((Plus) o).getG2().setTranslateY(((Plus) o).getG2().getTranslateY()+g);
                 if(((Plus) o).getG1().getBoundsInParent().getMinY()>700) {
@@ -252,6 +282,9 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof Concentric){
+                if(power==true){
+                    ctr+=1;
+                }
                 ((Concentric) o).getG1().setTranslateY(((Concentric) o).getG1().getTranslateY()+g);
                 ((Concentric) o).getG2().setTranslateY(((Concentric) o).getG2().getTranslateY()+g);
                 if(((Concentric) o).getG1().getBoundsInParent().getMinY()>700) {
@@ -261,6 +294,9 @@ public class GamePageController implements Initializable {
                 }
             }
             if(o instanceof NormalCircle){
+                if(power==true){
+                    ctr+=1;
+                }
                 ((NormalCircle) o).getG().setTranslateY(((NormalCircle) o).getG().getTranslateY()+g);
                 if(((NormalCircle) o).getG().getBoundsInParent().getMinY()>700) {
                     toAdd=true;
@@ -274,9 +310,16 @@ public class GamePageController implements Initializable {
         for(Common cs1: ColorSwitcherOnScreen) {
             ((ColorSwitcher)cs1).getG().setTranslateY(((ColorSwitcher)cs1).getG().getTranslateY()+g);
         }
+        for(Common cs1: BoltsOnScreen) {
+            ((Bolt)cs1).getG().setTranslateY(((Bolt)cs1).getG().getTranslateY()+g);
+        }
         if(toAdd){
             addRandomObstacle(-400);
             ObstaclesOnScreen.remove(0);
+        }
+        if(ctr==5){
+            ctr=0;
+            power=false;
         }
     }
 

@@ -18,6 +18,7 @@ public class GetObstacle {
         else if(i==4) {
             return new NormalCircle();
         }
+
         return null;
     }
 }
