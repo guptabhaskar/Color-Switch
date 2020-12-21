@@ -203,6 +203,7 @@ public class GamePageController implements Initializable {
                 AudioClip ac = new AudioClip(path.toString());
                 ac.play();
                 power = true;
+                ctr=0;
                 GameScreen.getChildren().remove(((Bolt) cs).getG());
                 ScoreL.setText(Integer.toString ( Integer.parseInt(ScoreL.getText()) + 3));
                 BoltsOnScreen.remove(0);
